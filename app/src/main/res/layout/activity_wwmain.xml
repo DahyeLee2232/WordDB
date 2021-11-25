@@ -13,25 +13,28 @@
         android:weightSum="17">
 
         <Button
-            android:id="@+id/today_wordlist"
+            android:id="@+id/today_wordlist_tab"
             android:layout_weight="9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="일일 단어"/>
+            android:text="일일 단어"
+            android:textSize="16dp"/>
 
        <Button
-            android:id="@+id/my_wordlist"
-            android:layout_weight="4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="나만의 단어"/>
+           android:id="@+id/my_wordlist_tab"
+           android:layout_weight="4"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:text="나만의 단어"
+           android:textSize="16dp"/>
 
         <Button
-            android:id="@+id/quiz"
+            android:id="@+id/quiz_tab"
             android:layout_weight="4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="QUIZ"/>
+            android:text="QUIZ"
+            android:textSize="16dp"/>
 
     </LinearLayout>
 
