@@ -10,7 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class QuizFragment extends Fragment {
-    public View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        return inflater.inflate(R.layout.fragment_myword, container, false);
+    }
+
+
+    public void onListItemClick(RecyclerView r, View v, int position, long id){
+        // super.onListItemClick(r, v, position, id);
     }
 }
