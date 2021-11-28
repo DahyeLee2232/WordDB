@@ -26,7 +26,8 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public void onCreate(SQLiteDatabase db) {
         String listSQL = "create table wordlist (" + "_id integer primary key autoincrement, "
-                        + "name not null)";
+                        + "name not null, " + "day_my integer not null, " +
+                        " constraint boolcheck check(day_my==0 or day_my==1))";
 
         String wordSQL = "create table word (" + "_id integer primary key autoincrement, "
                         + "word not null, " + "meaning not null, " + "imagelink, "
@@ -35,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(listSQL);
         db.execSQL(wordSQL);
         //기본 제공 나만의 단어장 하나 추가
-        db.execSQL("insert into wordlist (name) values (?)", new String[] {"나만의 단어장 1"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {"나만의 단어장 1"});
     }
 
     //아직 사용하지 말 것
