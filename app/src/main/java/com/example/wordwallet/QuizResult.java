@@ -27,19 +27,19 @@ public class QuizResult extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String correctCount = intent.getStringExtra("Correct");
-        String totalCount= intent.getStringExtra("lastIndex");
+        int correctCount = intent.getIntExtra("Correct",0);
+        int totalCount= intent.getIntExtra("lastIndex",0);
         ArrayList<String> wrongReviewQ = intent.getStringArrayListExtra("wrongDataQ");
         ArrayList<String> wrongReviewA = intent.getStringArrayListExtra("wrongDataA");
 
-        correct.setText(correctCount);
-        total.setText("/ " + totalCount);
+        correct.setText(String.valueOf(correctCount));
+        total.setText("/ " + String.valueOf(totalCount));
 
         ArrayList<HashMap<String, String>> reviewData = new ArrayList<>();
 
-        int totalCountI = Integer.parseInt(totalCount);
+        int wrongCount = totalCount - correctCount;
 
-        for(int i=0; i< totalCountI; i++){
+        for(int i=0; i< wrongCount; i++){
             HashMap<String, String> map = new HashMap<>();
             map.put("Q", wrongReviewQ.get(i));
             map.put("A", wrongReviewA.get(i));

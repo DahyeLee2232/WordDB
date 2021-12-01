@@ -72,7 +72,9 @@ public class Quiz2 extends AppCompatActivity{
 
                 if(answer.getText().toString().equalsIgnoreCase(wordData.get(currentIndex).get(0))){ // 정답 -> 정답 Toast 띄우고 다음 문제 출제
                     Toast.makeText(Quiz2.this, "정답!", Toast.LENGTH_SHORT).show();
-                    correctCount++;
+                    if(tryCount==0){
+                        correctCount++;
+                    }
 
                     if(currentIndex == lastIndex){  // 만약 index == 최종 -> 결과페이지
                         Toast.makeText(Quiz2.this, "퀴즈 종료!", Toast.LENGTH_SHORT).show();
@@ -80,12 +82,14 @@ public class Quiz2 extends AppCompatActivity{
                         Intent intent = new Intent(Quiz2.this, QuizResult.class);
                         intent.putExtra("wrongDataQ", wrongDataQ);
                         intent.putExtra("wrongDataA", wrongDataA);
-                        intent.putExtra("lastIndex",lastIndex); // 총 문제 수
+                        intent.putExtra("lastIndex",(lastIndex+1)); // 총 문제 수
                         intent.putExtra("Correct",correctCount); // 정답 수
                         startActivity(intent);
                     }
 
                     else{ // 마지막 문제 아니면 다음 문제
+                        tryCount=0; // tryCount 초기화
+
                         currentIndex++;
                         displayQuestion2(currentIndex);
                     }
@@ -113,7 +117,7 @@ public class Quiz2 extends AppCompatActivity{
         question.setText(wordData.get(index).get(1));
         answer.setText("");
 
-        tryCount=0; // tryCount 초기화
+
 
     }
 }

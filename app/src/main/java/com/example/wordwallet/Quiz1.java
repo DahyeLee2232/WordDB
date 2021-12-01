@@ -55,6 +55,7 @@ public class Quiz1 extends AppCompatActivity {
             lastIndex++;
 
         }
+
         cursor.close();
         db.close();
 
@@ -69,7 +70,9 @@ public class Quiz1 extends AppCompatActivity {
 
                 if(btn1.getText().toString().equalsIgnoreCase(wordData.get(currentIndex).get(1))){
                     Toast.makeText(Quiz1.this, "정답!", Toast.LENGTH_SHORT).show();
-                    correctCount++;
+                    if(tryCount==0){
+                        correctCount++;
+                    }
 
                     if(currentIndex == lastIndex){  // 만약 index == 최종 -> 결과페이지
                         Toast.makeText(Quiz1.this, "퀴즈 종료!", Toast.LENGTH_SHORT).show();
@@ -77,12 +80,14 @@ public class Quiz1 extends AppCompatActivity {
                         Intent intent = new Intent(Quiz1.this, QuizResult.class);
                         intent.putExtra("wrongDataQ", wrongDataQ);
                         intent.putExtra("wrongDataA", wrongDataA);
-                        intent.putExtra("lastIndex",lastIndex); // 총 문제 수
-                        intent.putExtra("Correct", correctCount); // 정답 수 .toArray().lenght 안된다면 변수 생성
+                        intent.putExtra("lastIndex",(lastIndex+1)); // 총 문제 수
+                        intent.putExtra("Correct", correctCount); // 정답 수
                         startActivity(intent);
                     }
 
                     else{ // 마지막 문제 아니면 다음 문제
+                        tryCount=0; // tryCount 초기화
+
                         currentIndex++;
                         displayQuestion1(currentIndex);
                     }
@@ -107,6 +112,9 @@ public class Quiz1 extends AppCompatActivity {
 
                 if(btn2.getText().toString().equalsIgnoreCase(wordData.get(currentIndex).get(1))){
                     Toast.makeText(Quiz1.this, "정답!", Toast.LENGTH_SHORT).show();
+                    if(tryCount==0){
+                        correctCount++;
+                    }
 
                     if(currentIndex == lastIndex){  // 만약 index == 최종 -> 결과페이지
                         Toast.makeText(Quiz1.this, "퀴즈 종료!", Toast.LENGTH_SHORT).show();
@@ -114,12 +122,14 @@ public class Quiz1 extends AppCompatActivity {
                         Intent intent = new Intent(Quiz1.this, QuizResult.class);
                         intent.putExtra("wrongDataQ", wrongDataQ);
                         intent.putExtra("wrongDataA", wrongDataA);
-                        intent.putExtra("lastIndex",lastIndex); // 총 문제 수
-                        intent.putExtra("Correct", correctCount); // 정답 수 .toArray().lenght 안된다면 변수 생성
+                        intent.putExtra("lastIndex",(lastIndex+1)); // 총 문제 수
+                        intent.putExtra("Correct", correctCount); // 정답 수
                         startActivity(intent);
                     }
 
                     else{ // 마지막 문제 아니면 다음 문제
+                        tryCount=0; // tryCount 초기화
+
                         currentIndex++;
                         displayQuestion1(currentIndex);
                     }
@@ -144,6 +154,9 @@ public class Quiz1 extends AppCompatActivity {
 
                 if(btn3.getText().toString().equalsIgnoreCase(wordData.get(currentIndex).get(1))){
                     Toast.makeText(Quiz1.this, "정답!", Toast.LENGTH_SHORT).show();
+                    if(tryCount==0){
+                        correctCount++;
+                    }
 
                     if(currentIndex == lastIndex){  // 만약 index == 최종 -> 결과페이지
                         Toast.makeText(Quiz1.this, "퀴즈 종료!", Toast.LENGTH_SHORT).show();
@@ -151,12 +164,14 @@ public class Quiz1 extends AppCompatActivity {
                         Intent intent = new Intent(Quiz1.this, QuizResult.class);
                         intent.putExtra("wrongDataQ", wrongDataQ);
                         intent.putExtra("wrongDataA", wrongDataA);
-                        intent.putExtra("lastIndex",lastIndex); // 총 문제 수
-                        intent.putExtra("Correct", correctCount); // 정답 수 .toArray().lenght 안된다면 변수 생성
+                        intent.putExtra("lastIndex",(lastIndex+1)); // 총 문제 수
+                        intent.putExtra("Correct", correctCount); // 정답 수
                         startActivity(intent);
                     }
 
                     else{ // 마지막 문제 아니면 다음 문제
+                        tryCount=0; // tryCount 초기화
+
                         currentIndex++;
                         displayQuestion1(currentIndex);
                     }
@@ -178,9 +193,6 @@ public class Quiz1 extends AppCompatActivity {
     public void displayQuestion1(int index){ // 문제와 답 출력
 
         if(lastIndex>=2) {
-
-            tryCount=0; // tryCount 초기화
-
             current.setText((index+1) + "/" + (lastIndex+1));
 
             q.setText(wordData.get(index).get(0));
@@ -238,7 +250,7 @@ public class Quiz1 extends AppCompatActivity {
         }
 
         if(lastIndex<2){
-            q.setText("단어를 더 추가해주세요..ㅎㅎ");
+            q.setText("단어를 더 추가해주세요..ㅎㅎ"); // 고민중
         }
     }
 }
