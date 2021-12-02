@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     /**
-     * 단어장리스트 db는 id와 이름만을 지닌다
+     * 단어장리스트 db는 id와 이름, 구분자 day_my(0이면 일일단어 1이면 내 단어)를 가진다
      * 둘 다 null이 되면 안 됨
      *
      * 단어 DB는 단어(word), 뜻(meaning), 이미지(image) 속성이 존재하고 소속된 단어장 리스트 번호를 가진다
