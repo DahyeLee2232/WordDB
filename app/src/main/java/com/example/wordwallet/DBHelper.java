@@ -37,6 +37,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(wordSQL);
         //기본 제공 나만의 단어장 하나 추가
         db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {"나만의 단어장 1"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 1"});
+
     }
 
     //아직 사용하지 말 것

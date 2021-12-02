@@ -48,8 +48,6 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == todayBtn){
-            Toast toast = Toast.makeText(this.getApplicationContext(), "일일 단어", Toast.LENGTH_SHORT);
-            toast.show();
             if(!todayWordFragment.isVisible()){
                 FragmentTransaction tf = manager.beginTransaction();
                 tf.replace(R.id.main_container, todayWordFragment);
@@ -58,8 +56,6 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
         else if (v == myBtn){
-            Toast toast = Toast.makeText(this.getApplicationContext(), "나만의 단어", Toast.LENGTH_SHORT);
-            toast.show();
             if(!myWordFragment.isVisible()){
                 FragmentTransaction tf = manager.beginTransaction();
                 tf.replace(R.id.main_container, myWordFragment);
@@ -68,8 +64,6 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
         else if(v == quizBtn){
-            Toast toast = Toast.makeText(this.getApplicationContext(), "퀴즈", Toast.LENGTH_SHORT);
-            toast.show();
             if(!quizFragment.isVisible()){
                 FragmentTransaction tf = manager.beginTransaction();
                 tf.replace(R.id.main_container, quizFragment);

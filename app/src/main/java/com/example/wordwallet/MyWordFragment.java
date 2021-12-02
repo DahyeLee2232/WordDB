@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyWordFragment extends Fragment {
+public class MyWordFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private ListAdapter adapter;
@@ -26,6 +28,7 @@ public class MyWordFragment extends Fragment {
 
     private void makeList(){
         listName = new ArrayList<String>();
+        listName.add("+");      //나만의 단어장 추가용
         DBHelper helper = new DBHelper(getContext());
         SQLiteDatabase db = helper.getWritableDatabase();
         Cursor cursor = db.rawQuery("select _id, name from wordlist where day_my=1", null);
@@ -44,16 +47,14 @@ public class MyWordFragment extends Fragment {
 
         adapter = new ListAdapter(listName);
         recyclerView.setAdapter(adapter);
-
+        recyclerView.addItemDecoration(new ListItemDecoration());
         return rootView;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-    public void onListItemClick(RecyclerView r, View v, int position, long id){
-        // super.onListItemClick(r, v, position, id);
     }
-
-
 }
 
 

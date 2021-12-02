@@ -16,9 +16,10 @@
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_test.xml" value="0.1" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_wwmain.xml" value="0.33" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_blank.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_myword.xml" value="0.33" />
+        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_myword.xml" value="0.1" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_quiz.xml" value="0.16422805247225025" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_todayword.xml" value="0.1" />
+        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_wordlist_recycler.xml" value="0.18125" />
       </map>
     </option>
   </component>
