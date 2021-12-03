@@ -11,56 +11,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-class TodayListAdapter extends RecyclerView.Adapter{
+/**
+ * 단어장 이름 뷰홀더
+ */
+
+class TodayListViewHolder extends RecyclerView.ViewHolder{
+    private final TextView textView;
+
+    TodayListViewHolder(View view) {
+        super(view);
+        textView = view.findViewById(android.R.id.text1);
+    }
+
+    TextView getTextView() {return textView;}
+}
+
+class TodayListAdapter extends RecyclerView.Adapter<TodayListViewHolder>{
     private ArrayList<WordListClass> list;
 
     public TodayListAdapter(ArrayList<WordListClass> list){
         this.list = list;
     }
 
-    /**
-     * 단어장 이름 뷰홀더
-     */
-
-    class ListViewHolder extends RecyclerView.ViewHolder{
-        private final TextView listName;
-
-        ListViewHolder(View view) {
-            super(view);
-            listName = view.findViewById(android.R.id.text1);
-        }
-
-        TextView getListName() {return listName;}
+    public TodayListViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(android.R.layout.simple_list_item_multiple_choice, viewGroup, false);
+        return new TodayListViewHolder(view);
     }
 
-    class WordViewHolder extends RecyclerView.ViewHolder{
-        RecyclerView recyclerView;
-
-        WordViewHolder(View view){
-            super(view);
-
-        }
-    }
-
-
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType){
-        View view;
-        switch (viewType){
-            case 0:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(android.R.layout.simple_list_item_multiple_choice, viewGroup, false);
-                return new ListViewHolder(view);
-                break;
-            case 1:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(android.R.layout.item_wordlist, viewGroup, false);
-                return new WordViewHolder(view);
-            default:
-
-        }
-    }
-
-    public void onBindViewHolder(ListViewHolder viewHolder, final int position){
-        //String text = list.get(position);
-        //viewHolder.getListName().setText(list.get(position));
+    public void onBindViewHolder(TodayListViewHolder viewHolder, final int position){
+        String text = list.get(position).getListName();
+        viewHolder.getTextView().setText(text);
     }
 
     public int getItemCount(){
@@ -101,6 +81,4 @@ class TodayListItemDecoration extends RecyclerView.ItemDecoration{
         c.drawBitmap(BitmapFactory.decodeResource(parent.getResources(), R.drawable.check1), left, top, null);
 */
     }
-
-
 }
