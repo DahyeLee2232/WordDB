@@ -1,18 +1,19 @@
 package com.example.wordwallet;
 
-
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+/**
+ * 단어장 이름 뷰홀더
+ */
 
 class TodayListViewHolder extends RecyclerView.ViewHolder{
     private final TextView listName;
@@ -37,7 +38,6 @@ class TodayListAdapter extends RecyclerView.Adapter<TodayListViewHolder>{
         return new TodayListViewHolder(view);
     }
 
-    @Override
     public void onBindViewHolder(TodayListViewHolder viewHolder, final int position){
         String text = list.get(position);
         viewHolder.getListName().setText(list.get(position));
