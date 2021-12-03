@@ -17,23 +17,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Quiz2 extends AppCompatActivity{
+public class Quiz2_retry extends AppCompatActivity{
 
-    Button question, nextBtn,exit;
+    Button question, nextBtn, exit;
     EditText answer;
     TextView current;
     int correctCount = 0;
     MediaPlayer correct, incorrect;
 
     ArrayList<ArrayList<String>> wordData  = new ArrayList<ArrayList<String>>();
+    ArrayList<String> Q = new ArrayList<String>();
+    ArrayList<String> A = new ArrayList<String>();
 
     ArrayList<String> wrongDataQ  = new ArrayList<String>();
     ArrayList<String> wrongDataA  = new ArrayList<String>();
 
     int currentIndex = 0;
     int lastIndex = -1;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,19 +54,20 @@ public class Quiz2 extends AppCompatActivity{
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from word", null);
 
+        Intent intent = getIntent();
 
-        for(int j=0; j<cursor.getCount(); j++) { // word DB에서 2차원 배열로 단어장 불러옴
+        lastIndex = intent.getIntExtra("wrongCount", -1);
+        Q = intent.getStringArrayListExtra("wrongQ");
+        A = intent.getStringArrayListExtra("wrongA");
 
-            cursor.moveToNext();
+        for(int j = 0; j<= lastIndex; j++) {
+            //n번째 단어의 스키마
             ArrayList<String> word = new ArrayList<String>();
-            word.add(cursor.getString(1)); // 1차원: [0] = 단어
-            word.add(cursor.getString(2)); //       [1] = 뜻
-
-            wordData.add(word); // 2차원: 2차원 배열에 [단어/뜻] 저장
-
-            lastIndex++;
-
+            word.add(Q.get(j));
+            word.add(A.get(j));
+            wordData.add(word);
         }
+
         cursor.close();
         db.close();
 
@@ -77,10 +78,11 @@ public class Quiz2 extends AppCompatActivity{
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Quiz2.this, WWmainActivity.class);
+                Intent intent = new Intent(Quiz2_retry.this, WWmainActivity.class);
                 startActivity(intent);
             }
         });
+
 
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -94,12 +96,13 @@ public class Quiz2 extends AppCompatActivity{
 
                     if(currentIndex == lastIndex){  // 만약 index == 최종 -> 결과페이지
 
-                        Intent intent = new Intent(Quiz2.this, QuizResult.class);
+                        Intent intent = new Intent(Quiz2_retry.this, QuizResult.class);
                         intent.putExtra("wrongDataQ", wrongDataQ);
                         intent.putExtra("wrongDataA", wrongDataA);
                         intent.putExtra("lastIndex",(lastIndex+1)); // 총 문제 수
                         intent.putExtra("Correct",correctCount); // 정답 수
                         intent.putExtra("QuizNumber",2);
+                        intent.putExtra("retry",1);
                         startActivity(intent);
                     }
 
@@ -119,12 +122,13 @@ public class Quiz2 extends AppCompatActivity{
 
                     if(currentIndex == lastIndex){  // 만약 index == 최종 -> 결과페이지
 
-                        Intent intent = new Intent(Quiz2.this, QuizResult.class);
+                        Intent intent = new Intent(Quiz2_retry.this, QuizResult.class);
                         intent.putExtra("wrongDataQ", wrongDataQ);
                         intent.putExtra("wrongDataA", wrongDataA);
                         intent.putExtra("lastIndex",(lastIndex+1)); // 총 문제 수
                         intent.putExtra("Correct",correctCount); // 정답 수
                         intent.putExtra("QuizNumber",2);
+                        intent.putExtra("retry",1);
                         startActivity(intent);
                     }
 
