@@ -2,6 +2,8 @@ package com.example.wordwallet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -13,8 +15,12 @@ import java.util.HashMap;
 
 public class QuizResult extends AppCompatActivity {
 
-    TextView correct, total;
+    TextView correct, total,exit;
     ListView Review;
+    Button finish, retry;
+    int correctCount, totalCount, QuizNumber, wrongCount, retryCount;
+    Intent intent;
+    ArrayList<String> wrongReviewQ, wrongReviewA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +31,25 @@ public class QuizResult extends AppCompatActivity {
         total = findViewById(R.id.total);
         Review = findViewById(R.id.review);
 
-        Intent intent = getIntent();
+        finish = findViewById(R.id.finish);
+        retry = findViewById(R.id.retry);
+        exit = findViewById(R.id.exit);
 
-        int correctCount = intent.getIntExtra("Correct",0);
-        int totalCount= intent.getIntExtra("lastIndex",0);
-        ArrayList<String> wrongReviewQ = intent.getStringArrayListExtra("wrongDataQ");
-        ArrayList<String> wrongReviewA = intent.getStringArrayListExtra("wrongDataA");
+        intent = getIntent();
+
+        correctCount = intent.getIntExtra("Correct",0);
+        totalCount= intent.getIntExtra("lastIndex",0);
+        wrongReviewQ = intent.getStringArrayListExtra("wrongDataQ");
+        wrongReviewA = intent.getStringArrayListExtra("wrongDataA");
+        QuizNumber = intent.getIntExtra("QuizNumber",0);
+        retryCount = intent.getIntExtra("retry",0);
 
         correct.setText(String.valueOf(correctCount));
         total.setText("/ " + String.valueOf(totalCount));
 
         ArrayList<HashMap<String, String>> reviewData = new ArrayList<>();
 
-        int wrongCount = totalCount - correctCount;
+        wrongCount = totalCount - correctCount;
 
         for(int i=0; i< wrongCount; i++){
             HashMap<String, String> map = new HashMap<>();
@@ -51,5 +63,53 @@ public class QuizResult extends AppCompatActivity {
                 new String[]{"Q", "A"},
                 new int[]{android.R.id.text1, android.R.id.text2});
         Review.setAdapter(adapter);
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuizResult.this, WWmainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        finish.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuizResult.this , WWmainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        if(retryCount==1 || wrongCount == 0){
+            retry.setVisibility(retry.INVISIBLE);
+        }
+
+        retry.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(QuizNumber==1){
+                    Intent intent1 = new Intent(QuizResult.this , Quiz1_retry.class);
+                    intent1.putExtra("wrongQ", wrongReviewQ);
+                    intent1.putExtra("wrongA", wrongReviewA);
+                    intent1.putExtra("wrongCount", (wrongCount-1));
+                    startActivity(intent1);
+
+                }
+                if(QuizNumber==2){
+                    Intent intent2 = new Intent(QuizResult.this , Quiz1_retry.class);
+                    intent2.putExtra("wrongQ", wrongReviewQ);
+                    intent2.putExtra("wrongA", wrongReviewA);
+                    intent2.putExtra("wrongCount", (wrongCount-1));
+                    startActivity(intent2);
+                }
+
+            }
+        });
+
+
+
+
     }
+
+
 }
