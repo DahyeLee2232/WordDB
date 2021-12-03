@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class MyWordFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private RecyclerView recyclerView;
-    private ListAdapter adapter;
+    private MyListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> listName;
 
@@ -45,9 +45,9 @@ public class MyWordFragment extends Fragment implements AdapterView.OnItemClickL
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ListAdapter(listName);
+        adapter = new MyListAdapter(listName);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new ListItemDecoration());
+        recyclerView.addItemDecoration(new MyListItemDecoration());
         return rootView;
     }
 

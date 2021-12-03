@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class TodayWordFragment extends Fragment {
     private RecyclerView recyclerView;
-    private ListAdapter adapter;
+    private MyListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> listName;
 
@@ -36,17 +36,26 @@ public class TodayWordFragment extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_todayword, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.todayword_recycler);
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_todayword, container, false);
+
+        Button addBtn = (Button) view.findViewById(R.id.add_Btn);
+        addBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                ;
+            }
+        });
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.todayword_recycler);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ListAdapter(listName);
+        adapter = new MyListAdapter(listName);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new ListItemDecoration());
-        return rootView;
+        recyclerView.addItemDecoration(new MyListItemDecoration());
+        return view;
     }
 
 

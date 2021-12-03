@@ -1,30 +1,25 @@
 package com.example.wordwallet;
 
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.ViewCompat;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 /**
- * 단어장 이름 뷰홀더(접근 제어자 default로 수정할 예정)
+ * 단어장 이름 뷰홀더
  */
 
-class ListViewHolder extends RecyclerView.ViewHolder{
+class MyListViewHolder extends RecyclerView.ViewHolder{
     private final TextView listName;
 
-    ListViewHolder(View view) {
+    MyListViewHolder(View view) {
         super(view);
         listName = view.findViewById(android.R.id.text1);
     }
@@ -32,19 +27,19 @@ class ListViewHolder extends RecyclerView.ViewHolder{
     TextView getListName() {return listName;}
 }
 
-class ListAdapter extends RecyclerView.Adapter<ListViewHolder>{
+class MyListAdapter extends RecyclerView.Adapter<MyListViewHolder>{
     private ArrayList<String> list;
 
-    public ListAdapter(ArrayList<String> list){
+    public MyListAdapter(ArrayList<String> list){
         this.list = list;
     }
 
-    public ListViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+    public MyListViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(android.R.layout.simple_list_item_1, viewGroup, false);
-        return new ListViewHolder(view);
+        return new MyListViewHolder(view);
     }
 
-    public void onBindViewHolder(ListViewHolder viewHolder, final int position){
+    public void onBindViewHolder(MyListViewHolder viewHolder, final int position){
         String text = list.get(position);
         viewHolder.getListName().setText(list.get(position));
     }
@@ -54,7 +49,7 @@ class ListAdapter extends RecyclerView.Adapter<ListViewHolder>{
     }
 }
 
-class ListItemDecoration extends RecyclerView.ItemDecoration{
+class MyListItemDecoration extends RecyclerView.ItemDecoration{
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state){
         super.onDraw(c, parent, state);
