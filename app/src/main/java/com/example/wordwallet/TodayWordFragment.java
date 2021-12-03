@@ -19,12 +19,8 @@ public class TodayWordFragment extends Fragment {
     private RecyclerView recyclerView;
     private TodayListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    DBHelper helper = new DBHelper(getContext());
-    SQLiteDatabase db = helper.getWritableDatabase();
 
-
-    private ArrayList<Integer> listNumber;      //단어장 번호 관리(눈에 안 보임)
-    private ArrayList<String> listName;
+    private ArrayList<WordListClass> list;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -32,12 +28,26 @@ public class TodayWordFragment extends Fragment {
     }
 
     private void makeList(){
-        listName = new ArrayList<String>();
-        Cursor cursor = db.rawQuery("select _id, name from wordlist where day_my=0", null);
-        while(cursor.moveToNext()){
-            listNumber.add(cursor.getInt(0));
-            listName.add(cursor.getString(1));
+        DBHelper helper = new DBHelper(getContext());
+        SQLiteDatabase db = helper.getWritableDatabase();
+        list = new ArrayList<WordListClass>();
+        int id = -1;
+        String listName = "";
+        ArrayList<WordItem> wordList = new ArrayList<>();
+
+        Cursor listCursor = db.rawQuery("select _id, name from wordlist where day_my=0", null);
+
+        while(listCursor.moveToNext()){
+            id = listCursor.getInt(0);
+            listName = listCursor.getString(1);
+
+            Cursor wordCursor = db.rawQuery("select word, meaning, imageLink from word where listnumber=?", new String[]{String.valueOf(id)});
+            while(wordCursor.moveToNext()){
+                wordList.add(new WordItem(wordCursor.getString(0), wordCursor.getString(1), wordCursor.getString(2)));
+            }
+            list.add(new WordListClass(listName, wordList));
         }
+        db.close();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -58,7 +68,7 @@ public class TodayWordFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new TodayListAdapter(listName);
+        adapter = new TodayListAdapter(list);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new TodayListItemDecoration());
         return view;
