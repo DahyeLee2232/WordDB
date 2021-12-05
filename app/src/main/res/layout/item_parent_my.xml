@@ -14,8 +14,8 @@
         android:textColor="#FF000000"/>
     <!--임시 사이즈-->
 
-    <CheckBox
-        android:id="@+id/button2"
+    <ImageButton
+        android:id="@+id/arrow_btn"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:button="@null"
@@ -24,10 +24,10 @@
         android:focusable="false"/>
 
     <ImageButton
-        android:id="@+id/button1"
+        android:id="@+id/plus_btn"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_toLeftOf="@+id/button2"
+        android:layout_toLeftOf="@+id/arrow_btn"
         android:layout_marginRight="5dp"
         android:background="@drawable/plus"
         android:focusable="false"/>

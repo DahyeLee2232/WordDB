@@ -15,7 +15,7 @@
     <!--임시 사이즈-->
 
     <CheckBox
-        android:id="@+id/button2"
+        android:id="@+id/bookmark"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:button="@null"
@@ -24,10 +24,10 @@
         android:focusable="false"/>
 
     <ImageButton
-        android:id="@+id/button1"
+        android:id="@+id/shortcut_btn"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_toLeftOf="@+id/button2"
+        android:layout_toLeftOf="@+id/bookmark"
         android:layout_marginRight="5dp"
         android:background="@drawable/right"
         android:focusable="false"/>

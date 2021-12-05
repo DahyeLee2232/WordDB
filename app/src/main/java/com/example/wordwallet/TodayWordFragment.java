@@ -20,7 +20,7 @@ public class TodayWordFragment extends Fragment {
 
     Button addBtn;
     ExpandableListView listView;
-    ExpandableListAdapter adapter;
+    TodayExpandableListAdapter adapter;
     ArrayList<ParentItem>  wordLists;        //단어장 이름
     ArrayList<ArrayList<ChildItem>> wordList;        //단어장 리스트
 
@@ -69,7 +69,7 @@ public class TodayWordFragment extends Fragment {
 
         listView = view.findViewById(R.id.expandable_wordlist);
         listView.setGroupIndicator(null);
-        adapter = new ExpandableListAdapter(getContext(), wordLists, wordList, R.layout.item_parent_today, R.layout.item_child);
+        adapter = new TodayExpandableListAdapter(getContext(), wordLists, wordList);
         listView.setAdapter(adapter);
         //단어장 펼침 닫힘
 

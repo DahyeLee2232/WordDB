@@ -1,5 +1,10 @@
 package com.example.wordwallet;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -43,9 +48,6 @@ public class MyWordDBActivity extends AppCompatActivity implements View.OnClickL
             db.execSQL("insert into word (word, meaning, imagelink, listnumber) " +
                             "values (?, ?, null, 1)", new String[]{word, meaning});
             db.close();
-
-            Intent intent = new Intent(this, ReadMyWordDBActivity.class);
-            startActivity(intent);
 
         }
         else if(view.getId() == R.id.image_edit){

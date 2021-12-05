@@ -1,7 +1,6 @@
 package com.example.wordwallet;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,26 +9,22 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class ExpandableListAdapter extends BaseExpandableListAdapter implements android.widget.ExpandableListAdapter {
+public class MyExpandableListAdapter extends BaseExpandableListAdapter implements android.widget.ExpandableListAdapter {
 
     Context context;
-    int parentLayout;
-    int childLayout;
     ArrayList<ParentItem> parentItems;
     //key는 단어장 리스트의 id_pk, value는 단어장 이름
     ArrayList<ArrayList<ChildItem>> childItems;
     //각 단어장이 arraylist의 멤버가 됨
 
-    public ExpandableListAdapter(Context context, ArrayList<ParentItem> parentItems, ArrayList<ArrayList<ChildItem>> childItems, int parentLayout, int childLayout){
+
+
+    public MyExpandableListAdapter(Context context, ArrayList<ParentItem> parentItems, ArrayList<ArrayList<ChildItem>> childItems){
         this.context = context;
         this.parentItems = parentItems;
         this.childItems = childItems;
-        this.parentLayout = parentLayout;
-        this.childLayout = childLayout;
     }
 
     @Override
@@ -73,14 +68,31 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
 
         if(v == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(parentLayout, parent, false);
+            v = inflater.inflate(R.layout.item_parent_my, parent, false);
         }
 
         TextView listName = v.findViewById(R.id.list_name);
-        ImageButton leftBtn = v.findViewById(R.id.button1);
-        CheckBox rightBtn = v.findViewById(R.id.button2);
+        ImageButton addWordBtn = v.findViewById(R.id.plus_btn);
+        ImageButton goBtn = v.findViewById(R.id.arrow_btn);
 
         listName.setText(getGroup(id).listName);
+
+        //버튼에 리스너 할당
+        addWordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //단어장 추가 화면으로 넘기고 완료 시 돌아온다
+
+            }
+        });
+
+        goBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //단어장 뷰페이저로 넘어간다
+            }
+        });
+
 
         return v;
     }
@@ -90,7 +102,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         View v = convertView;
         if(v == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(childLayout, parent, false);
+            v = inflater.inflate(R.layout.item_child, parent, false);
         }
 
         TextView word = v.findViewById(R.id.word);
@@ -109,27 +121,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         return false;
     }
 
-    public void addGroup(String listName){
-        int id = -1;
-        /**
-         * 쿼리
-         */
-
-        //parentItems.put(id, listName);
-    }
-
-    public void addWord(int listNumber, String word, String meaning, String imageLink){
-        int id = -1;
-        /**
-         * 쿼리
-         */
-/*
-        if(id != -1){
-            childItems.get(listNumber).add(new ChildItem(id, word, meaning, imageLink));
-        }
-
- */
-    }
     //삭제는 dialog로 물어보고 실행
     public void removeGroup(int id){
         /**
