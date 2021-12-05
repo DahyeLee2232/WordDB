@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="20dp"
+    android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/list_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_alignParentLeft="true"
+        android:textColor="#FF000000"/>
+    <!--임시 사이즈-->
+
+    <CheckBox
+        android:id="@+id/button2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:button="@null"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/custom_bookmark"
+        android:focusable="false"/>
+
+    <ImageButton
+        android:id="@+id/button1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/right"
+        android:focusable="false"/>
+
+</RelativeLayout>

@@ -77,8 +77,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
         }
 
         TextView listName = v.findViewById(R.id.list_name);
-        ImageButton shortcutBtn = v.findViewById(R.id.button1);
-        CheckBox bookmark = v.findViewById(R.id.button2);
+        ImageButton leftBtn = v.findViewById(R.id.button1);
+        CheckBox rightBtn = v.findViewById(R.id.button2);
 
         listName.setText(getGroup(id).listName);
 

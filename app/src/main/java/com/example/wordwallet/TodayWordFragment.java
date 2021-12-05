@@ -5,7 +5,6 @@ package com.example.wordwallet;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +69,7 @@ public class TodayWordFragment extends Fragment {
 
         listView = view.findViewById(R.id.expandable_wordlist);
         listView.setGroupIndicator(null);
-        adapter = new ExpandableListAdapter(getContext(), wordLists, wordList, R.layout.item_parent, R.layout.item_child);
+        adapter = new ExpandableListAdapter(getContext(), wordLists, wordList, R.layout.item_parent_today, R.layout.item_child);
         listView.setAdapter(adapter);
         //단어장 펼침 닫힘
 

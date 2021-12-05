@@ -20,7 +20,7 @@
         android:layout_height="25dp"
         android:button="@null"
         android:layout_alignParentRight="true"
-        android:background="@drawable/custom_bookmark"
+        android:background="@drawable/arrow"
         android:focusable="false"/>
 
     <ImageButton
@@ -28,8 +28,8 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_toLeftOf="@+id/button2"
-        android:paddingRight="10dp"
-        android:background="@drawable/right"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/plus"
         android:focusable="false"/>
 
 </RelativeLayout>
