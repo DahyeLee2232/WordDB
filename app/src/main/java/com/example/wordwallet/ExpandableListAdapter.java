@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -75,8 +76,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter implements 
             v = inflater.inflate(parentLayout, parent, false);
         }
 
-        TextView listName = (TextView) v.findViewById(R.id.list_name);
-        CheckBox bookmark = (CheckBox) v.findViewById(R.id.bookmark);
+        TextView listName = v.findViewById(R.id.list_name);
+        ImageButton shortcutBtn = v.findViewById(R.id.button1);
+        CheckBox bookmark = v.findViewById(R.id.button2);
 
         listName.setText(getGroup(id).listName);
 

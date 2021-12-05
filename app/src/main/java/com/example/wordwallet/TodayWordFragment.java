@@ -77,22 +77,7 @@ public class TodayWordFragment extends Fragment {
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-
                 parent.smoothScrollToPosition(groupPosition);
-
-                if(parent.isGroupExpanded(groupPosition)){
-                    parent.collapseGroup(groupPosition);
-                }
-                else{
-                    parent.expandGroup(groupPosition);
-                }
-                return false;
-            }
-        });
-
-        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
                 return false;
             }
         });
