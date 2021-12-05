@@ -12,13 +12,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/todayword_recycler"
+    <ExpandableListView
+        android:id="@+id/expandable_wordlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/add_Btn">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_Btn"/>
 
 </RelativeLayout>

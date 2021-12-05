@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/border.xml" value="0.36041666666666666" />
+        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/custom_bookmark.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/quiz_line.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/radius.xml" value="0.36041666666666666" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_dbactivity.xml" value="0.21603260869565216" />
@@ -18,8 +19,10 @@
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_blank.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_myword.xml" value="0.1" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_quiz.xml" value="0.16422805247225025" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_todayword.xml" value="0.1" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_wordlist.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_todayword.xml" value="0.1111111111111111" />
+        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_child.xml" value="0.1" />
+        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_parent.xml" value="0.1" />
+        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_wordlist.xml" value="0.1" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_wordlist_recycler.xml" value="0.18125" />
       </map>
     </option>

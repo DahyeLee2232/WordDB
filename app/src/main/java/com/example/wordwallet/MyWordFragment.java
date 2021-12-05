@@ -15,7 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MyWordFragment extends Fragment implements AdapterView.OnItemClickListener {
-
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        ;
+    }
+/*
     private RecyclerView recyclerView;
     private MyListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -55,6 +59,9 @@ public class MyWordFragment extends Fragment implements AdapterView.OnItemClickL
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
+
+
+ */
 }
 
 
