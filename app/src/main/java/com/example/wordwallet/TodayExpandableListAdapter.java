@@ -89,6 +89,7 @@ public class TodayExpandableListAdapter extends BaseExpandableListAdapter implem
             @Override
             public void onClick(View view) {
                 //checkbox check 상태면 통째로 나만의 단어장에 넣어준다
+
             }
         });
 

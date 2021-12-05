@@ -1,21 +1,16 @@
 package com.example.wordwallet;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-public class MyWordDBActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddWordActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button saveBtn;
     EditText wordView;
@@ -25,7 +20,7 @@ public class MyWordDBActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myword_db);
+        setContentView(R.layout.activity_addword);
 
         saveBtn = findViewById(R.id.save_Btn);
         wordView = findViewById(R.id.word_edit);
@@ -39,20 +34,31 @@ public class MyWordDBActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
 
-        if(view.getId() == R.id.save_Btn){
+        if(view.getId() == R.id.image_edit){
+            //이미지 추가 버튼을 누르면 기본 앱 갤러리로 넘어가서 사진을 골라온다
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+            intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            //startActivityForResult();
+
+        }
+        else if(view.getId() == R.id.save_Btn){
             String word = wordView.getText().toString();
             String meaning = meaningView.getText().toString();
 
             DBHelper openHelper = new DBHelper(this);
             SQLiteDatabase db = openHelper.getWritableDatabase();
-            db.execSQL("insert into word (word, meaning, imagelink, listnumber) " +
-                            "values (?, ?, null, 1)", new String[]{word, meaning});
+
+            if(true){
+                //사진이 없으면
+                db.execSQL("insert into word (word, meaning, imagelink, listnumber) " +
+                        "values (?, ?, null, 1)", new String[]{word, meaning});
+            }
+            else{
+                //사진이 있으면 이미지링크 포함해서 insert
+            }
             db.close();
 
-        }
-        else if(view.getId() == R.id.image_edit){
-            //아직 이미지 추가 구현 안함
-            ;
         }
 
     }

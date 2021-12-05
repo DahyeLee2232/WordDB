@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wordwallet">
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WordWallet">
+        <activity
+            android:name=".WordViewActivity"
+            android:exported="false" />
         <activity
             android:name=".Quiz1_retry"
             android:exported="true"
@@ -61,7 +63,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyWordDBActivity"
+            android:name=".AddWordActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />

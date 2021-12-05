@@ -1,11 +1,11 @@
 package com.example.wordwallet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -81,8 +81,9 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
         addWordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //단어장 추가 화면으로 넘기고 완료 시 돌아온다
-
+                //단어장 추가 화면으로 넘김
+                Intent intent = new Intent(context, AddWordActivity.class);
+                context.startActivity(intent);
             }
         });
 
@@ -90,10 +91,12 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
             @Override
             public void onClick(View view) {
                 //단어장 뷰페이저로 넘어간다
+                Intent intent = new Intent(context, WordViewActivity.class);
+                //이 때 단어장 하나를 준다
+                intent.putExtra("wordlist", childItems.get((int) getGroupId(id)));
+                context.startActivity(intent);
             }
         });
-
-
         return v;
     }
 
