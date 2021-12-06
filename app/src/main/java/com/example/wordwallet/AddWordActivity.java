@@ -57,8 +57,10 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
             else{
                 //사진이 있으면 이미지링크 포함해서 insert
             }
-            db.close();
 
+            //화면 갱신 코드
+            db.close();
+            finish();
         }
 
     }

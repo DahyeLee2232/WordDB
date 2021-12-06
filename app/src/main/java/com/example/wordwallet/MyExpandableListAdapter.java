@@ -84,6 +84,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
                 //단어장 추가 화면으로 넘김
                 Intent intent = new Intent(context, AddWordActivity.class);
                 context.startActivity(intent);
+                //화면 갱신
+                notifyDataSetChanged();
             }
         });
 

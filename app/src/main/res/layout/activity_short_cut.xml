@@ -10,7 +10,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/previousbtn"
+            android:id="@+id/previous_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/left"/>
@@ -43,6 +43,6 @@
         android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="자막" />
+        android:hint="한글 자막을 보려면 터치하세요" />
 
 </LinearLayout>

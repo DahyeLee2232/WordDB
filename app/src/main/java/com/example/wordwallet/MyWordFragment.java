@@ -106,7 +106,7 @@ public class MyWordFragment extends Fragment {
                                     db = helper.getWritableDatabase();
                                     db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {name});
                                     db.close();
-                                    makeList();
+                                    adapter.notifyDataSetChanged();
                                 }
                             }
                         })

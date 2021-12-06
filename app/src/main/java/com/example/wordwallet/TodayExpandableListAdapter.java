@@ -1,6 +1,7 @@
 package com.example.wordwallet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,15 +82,9 @@ public class TodayExpandableListAdapter extends BaseExpandableListAdapter implem
             @Override
             public void onClick(View view) {
                 //shortcut 영상 화면으로 넘어간다
-                //영상에서 바로 단어장으로 넘어갈 수 있다
-            }
-        });
-
-        bookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //checkbox check 상태면 통째로 나만의 단어장에 넣어준다
-
+                Intent intent = new Intent(context, ShortCutActivity.class);
+                intent.putExtra("wordlist", childItems.get((int) getGroupId(id)));
+                //단어장 리스트 -> 영상 화면 -> 단어 액티비티
             }
         });
 
