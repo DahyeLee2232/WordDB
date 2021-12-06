@@ -2,11 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="#101088">
 
-    <TextView
+    android:orientation="vertical">
+
+
+
+    <Button
+        android:id="@+id/Q1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="quiz"/>
+        android:layout_height="100dp"
+        android:background="@drawable/radius"
+        android:layout_marginTop="50dp"
+        android:text = "QUIZ 1 - 뜻 맞추기"/>
+
+    <Button
+        android:id="@+id/Q2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/radius"
+        android:layout_marginTop="30dp"
+        android:text="QUIZ 2 - 스펠링 맞추기"/>
+
+    <Button
+        android:id="@+id/Q3"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/radius"
+        android:layout_marginTop="30dp"
+        android:text="QUIZ 3 - 단어 뜻 짝 맞추기"/>
+
 
 </LinearLayout>
