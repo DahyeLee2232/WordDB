@@ -28,7 +28,6 @@ public class wordListSelect extends AppCompatActivity {
     ListView listView;
     ArrayList<String> showList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,12 +73,15 @@ public class wordListSelect extends AppCompatActivity {
 
         //-----------------------------------------------------------------------------------여기서부터 서치한 Custom Adaptor 코드
 
+        /*
         MyAdapter adapter = new MyAdapter(showList);
 
         listView = findViewById(R.id.select_list);
         listView.setAdapter(adapter);
-    }
 
+         */
+    }
+/*
 
     class MyAdapter extends BaseAdapter {
 
@@ -177,6 +179,8 @@ public class wordListSelect extends AppCompatActivity {
         }
 
     }
+
+ */
 
 }
 
