@@ -24,8 +24,33 @@ public class TodayWordFragment extends Fragment {
     ArrayList<ParentItem>  wordLists;        //단어장 이름
     ArrayList<ArrayList<ChildItem>> wordList;        //단어장 리스트
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        makeList();
+        return inflater.inflate(R.layout.fragment_todayword, container, false);
+    }
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        addBtn = view.findViewById(R.id.add_Btn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { }
+        });
+
+        listView = view.findViewById(R.id.expandable_wordlist);
+        listView.setGroupIndicator(null);
+        adapter = new TodayExpandableListAdapter(getContext(), wordLists, wordList);
+        listView.setAdapter(adapter);
+        //단어장 펼침 닫힘
+
+        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                parent.smoothScrollToPosition(groupPosition);
+                return false;
+            }
+        });
     }
 
     private void makeList() {
@@ -56,32 +81,4 @@ public class TodayWordFragment extends Fragment {
         }
         db.close();
     }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        makeList();
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_todayword, container, false);
-
-        addBtn = view.findViewById(R.id.add_Btn);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { }
-        });
-
-        listView = view.findViewById(R.id.expandable_wordlist);
-        listView.setGroupIndicator(null);
-        adapter = new TodayExpandableListAdapter(getContext(), wordLists, wordList);
-        listView.setAdapter(adapter);
-        //단어장 펼침 닫힘
-
-        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                parent.smoothScrollToPosition(groupPosition);
-                return false;
-            }
-        });
-
-        return view;
-    }
-
 }

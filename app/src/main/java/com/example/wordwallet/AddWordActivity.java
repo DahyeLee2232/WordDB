@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddWordActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,6 +46,12 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
         else if(view.getId() == R.id.save_Btn){
             String word = wordView.getText().toString();
             String meaning = meaningView.getText().toString();
+
+            if(word.length() == 0 || meaning.length() == 0){
+                Toast toast = Toast.makeText(this, "단어나 뜻은 비워둘 수 없습니다", Toast.LENGTH_SHORT);
+                toast.show();
+                finish();
+            }
 
             DBHelper openHelper = new DBHelper(this);
             SQLiteDatabase db = openHelper.getWritableDatabase();

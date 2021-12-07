@@ -29,42 +29,8 @@ public class MyWordFragment extends Fragment {
     DBHelper helper;
     SQLiteDatabase db;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    private void makeList() {
-        helper = new DBHelper(getContext());
-        db = helper.getWritableDatabase();
-        wordLists = new ArrayList<>();
-        wordList = new ArrayList<>();
-        //db 값 들어올 변수들
-        ParentItem p;
-        ArrayList<ChildItem> l;
-
-        Cursor listCursor = db.rawQuery("select _id, name from wordlist where day_my=1", null);
-
-        while (listCursor.moveToNext()) {
-            //단어장 리스트 번호와 이름을 읽어온다
-            p = new ParentItem(listCursor.getInt(0), listCursor.getString(1));
-
-            //단어장 하나의 단어들을 읽어온다
-            Cursor wordCursor = db.rawQuery("select _id, word, meaning, imageLink from word where listnumber="+p.id_pk, null);
-
-            //단어장에 단어 하나 씩 저장
-            l = new ArrayList<>();
-            while(wordCursor.moveToNext()){
-                l.add(new ChildItem(wordCursor.getInt(0), wordCursor.getString(1), wordCursor.getString(2), wordCursor.getString(3)));
-            }
-            wordLists.add(p);
-            wordList.add(l);
-        }
-        db.close();
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        makeList();
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_myword, container, false);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         listView = view.findViewById(R.id.expandable_wordlist);
         listView.setGroupIndicator(null);
@@ -119,8 +85,40 @@ public class MyWordFragment extends Fragment {
                 listAddPopUp.show();
             }
         });
+    }
 
-        return view;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        makeList();
+        return inflater.inflate(R.layout.fragment_myword, container, false);
+    }
+
+    private void makeList() {
+        helper = new DBHelper(getContext());
+        db = helper.getWritableDatabase();
+        wordLists = new ArrayList<>();
+        wordList = new ArrayList<>();
+        //db 값 들어올 변수들
+        ParentItem p;
+        ArrayList<ChildItem> l;
+
+        Cursor listCursor = db.rawQuery("select _id, name from wordlist where day_my=1", null);
+
+        while (listCursor.moveToNext()) {
+            //단어장 리스트 번호와 이름을 읽어온다
+            p = new ParentItem(listCursor.getInt(0), listCursor.getString(1));
+
+            //단어장 하나의 단어들을 읽어온다
+            Cursor wordCursor = db.rawQuery("select _id, word, meaning, imageLink from word where listnumber="+p.id_pk, null);
+
+            //단어장에 단어 하나 씩 저장
+            l = new ArrayList<>();
+            while(wordCursor.moveToNext()){
+                l.add(new ChildItem(wordCursor.getInt(0), wordCursor.getString(1), wordCursor.getString(2), wordCursor.getString(3)));
+            }
+            wordLists.add(p);
+            wordList.add(l);
+        }
+        db.close();
     }
 }
 
