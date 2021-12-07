@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "1072383426186",
+    "firebase_url": "https://word-wallet-default-rtdb.firebaseio.com",
+    "project_id": "word-wallet",
+    "storage_bucket": "word-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072383426186:android:81f54041760d69ffacb773",
+        "android_client_info": {
+          "package_name": "com.example.wordwallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072383426186-qc4oj438noslai3p1vpd3atdjqjv4mdi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wordwallet",
+            "certificate_hash": "efbb777644bbf3dea44d6176c0dfb2cf9b34db81"
+          }
+        },
+        {
+          "client_id": "1072383426186-tf2nft1pvekj4k0q396h2c6hh7u2jkq7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wordwallet",
+            "certificate_hash": "d8bda18705d362793261fae5778c1b1ac17e6d18"
+          }
+        },
+        {
+          "client_id": "1072383426186-rkqm8bujldue50fcfluvlo77nufojv7a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5CtWcWE7K9m9ztOK3cKBNoVL8T5KfUjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072383426186-rkqm8bujldue50fcfluvlo77nufojv7a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
