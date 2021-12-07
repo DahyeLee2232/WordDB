@@ -68,18 +68,19 @@
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
         android:hint="여기에 답을 입력하세요."
-        android:inputType="text"
+        android:inputType=""
         android:textSize="13sp" />
 
     <Button
         android:id="@+id/nextbtn"
-        android:layout_width="15dp"
-        android:layout_height="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignBottom="@id/answer"
         android:layout_gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/answer"
-        android:background="@drawable/right" />
+        android:background="#00FFFFFF"
+        android:text="NEXT"
+        android:textSize="10sp" />
 
 </RelativeLayout>

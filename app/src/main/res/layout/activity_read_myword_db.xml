@@ -2,7 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top">
+    android:gravity="top"
+    android:padding="30dp">
+
+    <ImageView
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/Stringimg"
+        android:src="@drawable/menu" />
 
     <TextView
         android:id="@+id/wordlist"
@@ -13,18 +21,21 @@
         android:gravity="center"
         android:minHeight="48dp"
         android:text="단어 목록"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/add_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="단어 추가"
+        android:textSize="13sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:minHeight="48dp"
-        android:textAlignment="center" />
-
+        android:textAlignment="center"
+        android:background="#00FFFFFF"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,18 +44,10 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/wordlist">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:text="단어"
-            android:textAlignment="center"/>
-
         <ListView
             android:id="@+id/word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
     </LinearLayout>
 
 

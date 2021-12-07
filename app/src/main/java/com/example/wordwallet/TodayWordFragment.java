@@ -53,13 +53,7 @@ public class TodayWordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_todayword, container, false);
 
-        Button addBtn = (Button) view.findViewById(R.id.add_Btn);
-        addBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                ;
-            }
-        });
+
 
         recyclerView = (RecyclerView) view.findViewById(R.id.todayword_recycler);
 
