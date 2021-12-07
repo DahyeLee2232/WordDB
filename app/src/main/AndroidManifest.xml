@@ -23,7 +23,11 @@
         </activity>
         <activity
             android:name=".WordViewActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Quiz1_retry"
             android:exported="true">
@@ -62,15 +66,6 @@
             android:name=".Quiz1"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ReadMyWordDBActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".AddWordActivity"
             android:exported="true">
