@@ -85,6 +85,7 @@ public class TodayExpandableListAdapter extends BaseExpandableListAdapter implem
                 Intent intent = new Intent(context, ShortCutActivity.class);
                 intent.putExtra("wordlist", childItems.get((int) getGroupId(id)));
                 //단어장 리스트 -> 영상 화면 -> 단어 액티비티
+                context.startActivity(intent);
             }
         });
 
