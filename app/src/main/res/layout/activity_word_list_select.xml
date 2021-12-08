@@ -9,8 +9,8 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/menu"
-        android:contentDescription="@string/Stringimg"/>
+        android:contentDescription="@string/Stringimg"
+        android:src="@drawable/menu" />
 
     <RelativeLayout
         android:id="@+id/background"

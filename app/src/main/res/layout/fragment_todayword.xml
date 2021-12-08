@@ -3,20 +3,14 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <Button
-        android:id="@+id/add_Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="나만의 단어장에 추가"
-        android:textSize="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
 
-    <ExpandableListView
-        android:id="@+id/expandable_wordlist"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todayword_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/add_Btn"
-        android:choiceMode="multipleChoice"/>
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </RelativeLayout>

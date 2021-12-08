@@ -4,12 +4,20 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="30dp">
+
+    <ImageView
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu"
+        android:contentDescription="@string/Stringimg"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
 
         <Button
             android:id="@+id/today_wordlist_tab"
@@ -17,7 +25,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="일일 단어"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:background="#00FFFFFF"/>
+
 
        <Button
            android:id="@+id/my_wordlist_tab"
@@ -25,7 +35,9 @@
            android:layout_width="0dp"
            android:layout_height="wrap_content"
            android:text="나만의 단어"
-           android:textSize="16dp"/>
+           android:textSize="16dp"
+           android:background="#00FFFFFF"/>
+
 
         <Button
             android:id="@+id/quiz_tab"
@@ -33,14 +45,76 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="QUIZ"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:background="#00FFFFFF"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_weight="0.05"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#00FFFFFF" />
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@drawable/line3"/>
+
+        <Button
+            android:layout_weight="0.05"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#00FFFFFF" />
+        <Button
+            android:layout_weight="0.05"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#00FFFFFF" />
+
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@drawable/line3"/>
+        <Button
+            android:layout_weight="0.05"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#00FFFFFF" />
+
+        <Button
+            android:layout_weight="0.05"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#00FFFFFF" />
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@drawable/line3"/>
+        <Button
+            android:layout_weight="0.05"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#00FFFFFF" />
+
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
     </LinearLayout>

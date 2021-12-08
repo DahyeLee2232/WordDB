@@ -14,13 +14,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/menu" />
 
-    <Button
-        android:id="@+id/exit"
-        android:layout_width="15dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/menu"
-        android:layout_marginTop="17dp"
-        android:background="@drawable/left"/>
+
 
     <TextView
         android:id="@+id/quiz"
@@ -44,7 +38,7 @@
     <LinearLayout
         android:id="@+id/feedback"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:layout_below="@+id/correct"
         android:layout_marginTop="20dp"
         android:background="#F6F6F6"
@@ -75,7 +69,7 @@
     <TextView
         android:id="@+id/correct"
         android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/quiz"
         android:layout_marginTop="30dp"
         android:gravity="right|bottom"
@@ -84,7 +78,7 @@
     <TextView
         android:id="@+id/total"
         android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/quiz"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
