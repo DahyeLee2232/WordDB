@@ -8,5 +8,6 @@
     <string name="Stringimg"> we cannot open this image </string>
 
     <string name="profile"> Profile </string>
+    <string name="shortCut"> Short Cut </string>
 
 </resources>
