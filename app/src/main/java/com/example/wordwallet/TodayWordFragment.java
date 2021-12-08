@@ -1,5 +1,6 @@
 package com.example.wordwallet;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -29,12 +30,6 @@ public class TodayWordFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        addBtn = view.findViewById(R.id.add_Btn);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { }
-        });
 
         listView = view.findViewById(R.id.expandable_wordlist);
         listView.setGroupIndicator(null);
