@@ -14,12 +14,22 @@
         android:textColor="#FF000000"/>
     <!--임시 사이즈-->
 
+    <ImageButton
+        android:id="@+id/arrow_btn"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/arrow"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:focusable="false"/>
+
     <CheckBox
         android:id="@+id/bookmark"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:button="@null"
-        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/arrow_btn"
+        android:layout_marginRight="5dp"
         android:background="@drawable/custom_bookmark"
         android:focusable="false"/>
 

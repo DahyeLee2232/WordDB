@@ -73,6 +73,7 @@ public class TodayExpandableListAdapter extends BaseExpandableListAdapter implem
         TextView listName = v.findViewById(R.id.list_name);
         ImageButton shortcutBtn = v.findViewById(R.id.shortcut_btn);
         CheckBox bookmark = v.findViewById(R.id.bookmark);
+        ImageButton goBtn = v.findViewById(R.id.arrow_btn);
 
         listName.setText(getGroup(id).listName);
 
@@ -83,6 +84,16 @@ public class TodayExpandableListAdapter extends BaseExpandableListAdapter implem
                 Intent intent = new Intent(context, ShortActivity.class);
                 intent.putExtra("wordlist", parentItems.get((int) getGroupId(id)).id_pk);
                 //단어장 리스트 -> 영상 화면 -> 단어 액티비티
+                context.startActivity(intent);
+            }
+        });
+
+        //단어 뷰페이저
+        goBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, OneWordActivity.class);
+                intent.putExtra("wordlist", parentItems.get((int) getGroupId(id)).id_pk);
                 context.startActivity(intent);
             }
         });
