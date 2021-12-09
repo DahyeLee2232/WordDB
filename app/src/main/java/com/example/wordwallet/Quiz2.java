@@ -33,7 +33,7 @@ public class Quiz2 extends AppCompatActivity{
     int currentIndex = 0;
     int lastIndex = -1;
 
-
+    ArrayList<Integer> Listnumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +50,13 @@ public class Quiz2 extends AppCompatActivity{
         correct = MediaPlayer.create(this, R.raw.correct);
         incorrect = MediaPlayer.create(this, R.raw.incorrect);
 
+
+        Intent intent = getIntent();
+        Listnumber = intent.getIntegerArrayListExtra("ListNumber");
+
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from word", null);
+        Cursor cursor = db.rawQuery("select * from word where listnumber=?", new String[]{String.valueOf(Listnumber)}); // where listnumber exists ( 범위 선택 받은 것의 list)
 
 
         for(int j=0; j<cursor.getCount(); j++) { // word DB에서 2차원 배열로 단어장 불러옴

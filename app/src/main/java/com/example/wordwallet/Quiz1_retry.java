@@ -3,11 +3,9 @@ package com.example.wordwallet;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,8 +35,8 @@ public class Quiz1_retry extends AppCompatActivity {
         setContentView(R.layout.activity_quiz1);
 
         q = findViewById(R.id.q);
-        btn1 = findViewById(R.id.button1);
-        btn2 = findViewById(R.id.button2);
+        btn1 = findViewById(R.id.shortcut_btn);
+        btn2 = findViewById(R.id.bookmark);
         btn3 = findViewById(R.id.button3);
         current = findViewById(R.id.QuestionIndex1);
         exit = findViewById(R.id.exit);

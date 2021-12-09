@@ -14,7 +14,9 @@
         android:gravity="center"
         android:minHeight="48dp"
         android:text="새 단어"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/save_Btn"
@@ -24,11 +26,12 @@
         android:layout_alignParentRight="true"
         android:minHeight="48dp"
         android:text="저장"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:background="#00FFFFFF"/>
 
     <EditText
         android:id="@+id/word_edit"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:hint="단어"
@@ -37,9 +40,10 @@
 
     <EditText
         android:id="@+id/meaning_edit"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/word_edit"
+        android:layout_centerInParent="true"
         android:hint="뜻"
         android:minHeight="48dp"
         android:textAlignment="center" />
@@ -49,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/meaning_edit"
+        android:background="#00FFFFFF"
         android:text="이미지 추가"
         android:textAlignment="center" />
 

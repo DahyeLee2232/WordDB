@@ -1,62 +1,126 @@
 package com.example.wordwallet;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyWordFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class MyWordFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private MyListAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<String> listName;
+    Button addBtn;
+    ExpandableListView listView;
+    MyExpandableListAdapter adapter;
+    ArrayList<ParentItem>  wordLists;        //단어장 이름
+    ArrayList<ArrayList<ChildItem>> wordList;        //단어장 리스트
 
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
+    DBHelper helper;
+    SQLiteDatabase db;
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        listView = view.findViewById(R.id.expandable_wordlist);
+        listView.setGroupIndicator(null);
+        adapter = new MyExpandableListAdapter(getContext(), wordLists, wordList);
+        listView.setAdapter(adapter);
+        //단어장 펼침 닫힘
+
+        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                parent.smoothScrollToPosition(groupPosition);
+                return false;
+            }
+        });
+
+        addBtn = view.findViewById(R.id.add_Btn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //alertdialog 출력
+                AlertDialog.Builder adBuilder = new AlertDialog.Builder(getContext())
+                        .setTitle("단어장 추가")
+                        .setMessage("단어장 이름을 입력하세요")
+                        .setView(R.layout.dialog_edit)
+                        .setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //단어장 추가 쿼리
+                                Dialog d = (Dialog) dialogInterface;
+                                EditText ed = d.findViewById(R.id.dialog_edit_box);
+                                String name = ed.getText().toString();
+
+                                if(name.length() == 0){
+                                    //입력이 없으면 창 닫고 토스트
+                                    Toast blankErr = Toast.makeText(getContext(), "단어장 이름은 비울 수 없습니다.", Toast.LENGTH_LONG);
+                                    blankErr.show();
+                                }
+                                else{
+                                    db = helper.getWritableDatabase();
+                                    db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {name});
+                                    db.close();
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) { }
+                        });
+
+                AlertDialog listAddPopUp = adBuilder.create();
+                listAddPopUp.show();
+            }
+        });
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         makeList();
+        return inflater.inflate(R.layout.fragment_myword, container, false);
     }
 
-    private void makeList(){
-        listName = new ArrayList<String>();
-        listName.add("+");      //나만의 단어장 추가용
-        DBHelper helper = new DBHelper(getContext());
-        SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select _id, name from wordlist where day_my=1", null);
-        while(cursor.moveToNext()){
-            listName.add(cursor.getString(1));
+    private void makeList() {
+        helper = new DBHelper(getContext());
+        db = helper.getWritableDatabase();
+        wordLists = new ArrayList<>();
+        wordList = new ArrayList<>();
+        //db 값 들어올 변수들
+        ParentItem p;
+        ArrayList<ChildItem> l;
+
+        Cursor listCursor = db.rawQuery("select _id, name from wordlist where day_my=1", null);
+
+        while (listCursor.moveToNext()) {
+            //단어장 리스트 번호와 이름을 읽어온다
+            p = new ParentItem(listCursor.getInt(0), listCursor.getString(1));
+
+            //단어장 하나의 단어들을 읽어온다
+            Cursor wordCursor = db.rawQuery("select _id, word, meaning, imageLink from word where listnumber="+p.id_pk, null);
+
+            //단어장에 단어 하나 씩 저장
+            l = new ArrayList<>();
+            while(wordCursor.moveToNext()){
+                l.add(new ChildItem(wordCursor.getInt(0), wordCursor.getString(1), wordCursor.getString(2), wordCursor.getString(3)));
+            }
+            wordLists.add(p);
+            wordList.add(l);
         }
-    }
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_myword, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.myword_recycler);
-        recyclerView.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
-        adapter = new MyListAdapter(listName);
-        recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new MyListItemDecoration());
-        return rootView;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        db.close();
     }
 }
-
 
 
 

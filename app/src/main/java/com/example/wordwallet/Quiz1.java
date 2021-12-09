@@ -5,22 +5,20 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class Quiz1 extends AppCompatActivity {
@@ -34,7 +32,7 @@ public class Quiz1 extends AppCompatActivity {
 
 
     MediaPlayer correct, incorrect;
-
+    ArrayList<Integer> Listnumber;
 
 
     ArrayList<ArrayList<String>> wordData = new ArrayList<ArrayList<String>>();
@@ -49,18 +47,22 @@ public class Quiz1 extends AppCompatActivity {
 
 
         q = findViewById(R.id.q);
-        btn1 = findViewById(R.id.button1);
-        btn2 = findViewById(R.id.button2);
+        btn1 = findViewById(R.id.shortcut_btn);
+        btn2 = findViewById(R.id.bookmark);
         btn3 = findViewById(R.id.button3);
         current = findViewById(R.id.QuestionIndex1);
         exit = findViewById(R.id.exit);
 
+
         correct = MediaPlayer.create(this, R.raw.correct);
         incorrect = MediaPlayer.create(this, R.raw.incorrect);
 
+        Intent intent = getIntent();
+        Listnumber = intent.getIntegerArrayListExtra("ListNumber");
+
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from word", null); // where listnumber exists ( 범위 선택 받은 것의 list)
+        Cursor cursor = db.rawQuery("select * from word where listnumber=?", new String[]{String.valueOf(Listnumber)}); // where listnumber exists ( 범위 선택 받은 것의 list)
 
 
         for (int j = 0; j < cursor.getCount(); j++) {

@@ -15,12 +15,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class wordListSelect extends AppCompatActivity {
+public class WordListSelect extends AppCompatActivity {
 
     Intent intent;
     int QuizNum;
@@ -39,16 +37,17 @@ public class wordListSelect extends AppCompatActivity {
 
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from wordList", null); // where listnumber exists ( 범위 선택 받은 것의 list)
+        Cursor cursor = db.rawQuery("select name from wordlist", null); // where listnumber exists ( 범위 선택 받은 것의 list)
 
-
+        /*
         for (int j = 0; j < cursor.getCount(); j++) {
             //n번째 단어의 스키마
             cursor.moveToNext();
             showList.add(cursor.getString(1));
         }
 
-
+        db.close();
+         */
 
 
         selected.setOnClickListener(new View.OnClickListener() { // 저장 버튼 눌리면 선택된 단어 리스트 배열로 putExtra 해 줌
@@ -56,14 +55,15 @@ public class wordListSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (QuizNum == 1) {
-                    Intent intent1 = new Intent(wordListSelect.this, Quiz1.class);
+                    Intent intent1 = new Intent(WordListSelect.this, Quiz1.class);
+                    intent1.putExtra("ListNumber", showList);
                     //putExtra 단어장 리스트
 
 
                     startActivity(intent1);
                 }
                 if (QuizNum == 2) {
-                    Intent intent1 = new Intent(wordListSelect.this, Quiz2.class);
+                    Intent intent1 = new Intent(WordListSelect.this, Quiz2.class);
                     //putExtra 단어장 리스트
                     startActivity(intent1);
                 }
@@ -73,15 +73,14 @@ public class wordListSelect extends AppCompatActivity {
 
         //-----------------------------------------------------------------------------------여기서부터 서치한 Custom Adaptor 코드
 
-        /*
         MyAdapter adapter = new MyAdapter(showList);
 
-        listView = findViewById(R.id.select_list);
+        //listView = findViewById(R.id.select_list);
         listView.setAdapter(adapter);
 
-         */
     }
-/*
+}
+
 
     class MyAdapter extends BaseAdapter {
 
@@ -180,9 +179,8 @@ public class wordListSelect extends AppCompatActivity {
 
     }
 
- */
 
-}
+
 
 
 

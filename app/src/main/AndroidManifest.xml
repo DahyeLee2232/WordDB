@@ -19,12 +19,19 @@
             android:name=".ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".wordListSelect"
+            android:name=".WordListSelect"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".WordViewActivity"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity
@@ -66,16 +73,7 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ReadMyWordDBActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MyWordDBActivity"
+            android:name=".AddWordActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />

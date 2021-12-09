@@ -9,8 +9,8 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/menu"
-        android:contentDescription="@string/Stringimg"/>
+        android:contentDescription="@string/Stringimg"
+        android:src="@drawable/menu" />
 
     <Button
         android:id="@+id/exit"
@@ -64,7 +64,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/shortcut_btn"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_below="@id/q"
@@ -74,10 +74,10 @@
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bookmark"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_below="@id/button1"
+        android:layout_below="@id/shortcut_btn"
         android:layout_marginTop="15dp"
         android:background="@drawable/radius"
         android:textColor="#000000" />
@@ -87,7 +87,7 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
-        android:layout_below="@id/button2"
+        android:layout_below="@id/bookmark"
         android:background="@drawable/radius"
         android:textColor="#000000" />
 
