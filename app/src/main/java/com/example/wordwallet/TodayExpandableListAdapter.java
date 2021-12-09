@@ -15,8 +15,6 @@ import java.util.ArrayList;
 public class TodayExpandableListAdapter extends BaseExpandableListAdapter implements android.widget.ExpandableListAdapter {
 
     Context context;
-    int parentLayout;
-    int childLayout;
     ArrayList<ParentItem> parentItems;
     //key는 단어장 리스트의 id_pk, value는 단어장 이름
     ArrayList<ArrayList<ChildItem>> childItems;
@@ -82,8 +80,8 @@ public class TodayExpandableListAdapter extends BaseExpandableListAdapter implem
             @Override
             public void onClick(View view) {
                 //shortcut 영상 화면으로 넘어간다
-                Intent intent = new Intent(context, ShortCutActivity.class);
-                intent.putExtra("wordlist", childItems.get((int) getGroupId(id)));
+                Intent intent = new Intent(context, ShortActivity.class);
+                intent.putExtra("wordlist", parentItems.get((int) getGroupId(id)).id_pk);
                 //단어장 리스트 -> 영상 화면 -> 단어 액티비티
                 context.startActivity(intent);
             }
