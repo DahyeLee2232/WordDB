@@ -15,12 +15,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class wordListSelect extends AppCompatActivity {
+public class WordListSelect extends AppCompatActivity {
 
     Intent intent;
     int QuizNum;
@@ -57,7 +55,7 @@ public class wordListSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (QuizNum == 1) {
-                    Intent intent1 = new Intent(wordListSelect.this, Quiz1.class);
+                    Intent intent1 = new Intent(WordListSelect.this, Quiz1.class);
                     intent1.putExtra("ListNumber", showList);
                     //putExtra 단어장 리스트
 
@@ -65,7 +63,7 @@ public class wordListSelect extends AppCompatActivity {
                     startActivity(intent1);
                 }
                 if (QuizNum == 2) {
-                    Intent intent1 = new Intent(wordListSelect.this, Quiz2.class);
+                    Intent intent1 = new Intent(WordListSelect.this, Quiz2.class);
                     //putExtra 단어장 리스트
                     startActivity(intent1);
                 }

@@ -5,16 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class QuizFragment extends Fragment {
 
@@ -31,7 +24,7 @@ public class QuizFragment extends Fragment {
         Q1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(getActivity(), wordListSelect.class);
+                Intent intent1 = new Intent(getActivity(), WordListSelect.class);
                 intent1.putExtra("QuizNumber", 1);
                 startActivity(intent1);
             }
@@ -40,7 +33,7 @@ public class QuizFragment extends Fragment {
         Q2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getActivity(), wordListSelect.class);
+                Intent intent2 = new Intent(getActivity(), WordListSelect.class);
                 intent2.putExtra("QuizNumber", 2);
                 startActivity(intent2);
             }
