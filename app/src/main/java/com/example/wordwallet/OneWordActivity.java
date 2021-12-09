@@ -7,10 +7,16 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -44,15 +50,17 @@ public class OneWordActivity extends AppCompatActivity {
         num_pages = words.size();
 
         pager = findViewById(R.id.view_pager);
-        adapter = new MyStateAdapter(this);
+        adapter = new MyStateAdapter(this, words);
         pager.setAdapter(adapter);
 
     }
 
     private class MyStateAdapter extends FragmentStateAdapter{
+        ArrayList<ChildItem> words;
 
-        MyStateAdapter(FragmentActivity fa){
+        MyStateAdapter(FragmentActivity fa, ArrayList<ChildItem> words){
             super(fa);
+            this.words = words;
         }
 
         @NonNull
@@ -66,6 +74,7 @@ public class OneWordActivity extends AppCompatActivity {
         public int getItemCount() {
             return num_pages;
         }
+
     }
 }
 

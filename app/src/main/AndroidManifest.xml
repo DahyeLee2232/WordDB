@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".OneWordActivity"
+            android:exported="true"/>
+        <activity
             android:name=".ShortActivity"
             android:exported="true" />
         <activity
