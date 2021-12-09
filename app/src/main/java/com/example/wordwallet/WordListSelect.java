@@ -67,8 +67,10 @@ public class WordListSelect extends AppCompatActivity {
             public void onClick(View v) {
 
                 //putExtra할 리스트 만들기
-                boolean[] checkBoxState = adapter.checkBoxState;
+                boolean[] checkBoxState;
+                checkBoxState = adapter.checkBoxState;
 
+                selectedList = new ArrayList<>();
                 for(int i = 0; i < checkBoxState.length; i++){
                     if(checkBoxState[i] == true){
                         selectedList.add(showList.get(i).id_pk);
