@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                             } catch (FirebaseAuthUserCollisionException e) {
                                 Toast.makeText(RegisterActivity.this, "이미 있음 다른 아이디 ㄱㄱ", Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
-                                Toast.makeText(RegisterActivity.this, "이메일 또는 비밀번호를 다시 입력하세요 (에러처리안한거임ㅋㅋ)", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "이메일 또는 비밀번호를 다시 입력하세요", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
