@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,46 +25,62 @@ public class WordListSelect extends AppCompatActivity {
     int QuizNum;
     Button selected;
     ListView listView;
+
+    //전체 단어장 번호/단어장 이름, 한 쌍으로 기능한다
+    ArrayList<Integer> showNumber;
     ArrayList<String> showList;
+
+    //선택된 단어장 번호들
+    ArrayList<Integer> selectedList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_list_select);
+/*
 
         selected = findViewById(R.id.selected);
         intent = getIntent();
         QuizNum = intent.getIntExtra("QuizNumber", 0);
+        listView = findViewById(R.id.select_list);
+
+        showNumber = new ArrayList<>();
+        showList = new ArrayList<>();
 
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select name from wordlist", null); // where listnumber exists ( 범위 선택 받은 것의 list)
+        Cursor cursor = db.rawQuery("select * from wordlist", null); // where listnumber exists ( 범위 선택 받은 것의 list)
 
-        /*
-        for (int j = 0; j < cursor.getCount(); j++) {
-            //n번째 단어의 스키마
-            cursor.moveToNext();
+        while(cursor.moveToNext()){
+            showNumber.add(cursor.getInt(0));
             showList.add(cursor.getString(1));
         }
 
         db.close();
-         */
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, showList);
+        listView.setAdapter(adapter);
 
         selected.setOnClickListener(new View.OnClickListener() { // 저장 버튼 눌리면 선택된 단어 리스트 배열로 putExtra 해 줌
 
             @Override
             public void onClick(View v) {
+
+                //putExtra할 리스트 만들기
+                selectedList = new ArrayList<>();
+
+
+
                 if (QuizNum == 1) {
                     Intent intent1 = new Intent(WordListSelect.this, Quiz1.class);
-                    intent1.putExtra("ListNumber", showList);
+                    intent1.putExtra("ListNumber", selectedList);
                     //putExtra 단어장 리스트
-
 
                     startActivity(intent1);
                 }
                 if (QuizNum == 2) {
                     Intent intent1 = new Intent(WordListSelect.this, Quiz2.class);
+                    intent1.putExtra("ListNumber", selectedList);
                     //putExtra 단어장 리스트
                     startActivity(intent1);
                 }
@@ -73,10 +90,11 @@ public class WordListSelect extends AppCompatActivity {
 
         //-----------------------------------------------------------------------------------여기서부터 서치한 Custom Adaptor 코드
 
-        MyAdapter adapter = new MyAdapter(showList);
+
 
         //listView = findViewById(R.id.select_list);
         listView.setAdapter(adapter);
+*/
 
     }
 }
