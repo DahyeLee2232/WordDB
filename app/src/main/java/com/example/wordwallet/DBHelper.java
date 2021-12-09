@@ -35,10 +35,35 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(listSQL);
         db.execSQL(wordSQL);
+
+        //기본 일일 단어장
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 1 - CNN_1"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 2 - CNN_2"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 3 - CNN_3"});
+
+        //일일 단어장에 단어 추가
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 1)", new String[] {"government", "정부"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 1)", new String[] {"partially", "부분적으로"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 1)", new String[] {"middle explanation", "중간 설명"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 1)", new String[] {"subject", "주제"});
+
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 2)", new String[] {"shutdown", "임시 휴업"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 2)", new String[] {"congress", "회의"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 2)", new String[] {"president", "대통령"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 2)", new String[] {"big sticking point", "큰 걸림돌"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 2)", new String[] {"impasse", "난관"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 2)", new String[] {"proposed border wall", "제안된 국경 벽"});
+
+
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 3)", new String[] {"representatives", "대표자"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 3)", new String[] {"legislation", "법률 제정"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 3)", new String[] {"deadline was up", "마감일이 다가왔다"});
+        db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 3)", new String[] {"agreement", "합의"});
+
         //기본 제공 나만의 단어장 하나 추가
         db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {"나만의 단어장 1"});
 
-        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 1"});
+
 
     }
 

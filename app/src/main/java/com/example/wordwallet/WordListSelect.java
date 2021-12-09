@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,7 +25,12 @@ public class WordListSelect extends AppCompatActivity {
     int QuizNum;
     Button selected;
     ListView listView;
-    ArrayList<String> showList;
+
+    //단어장 목록
+    ArrayList<ParentItem> showList;
+
+    //선택된 단어장 번호들
+    ArrayList<Integer> selectedList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,36 +40,52 @@ public class WordListSelect extends AppCompatActivity {
         selected = findViewById(R.id.selected);
         intent = getIntent();
         QuizNum = intent.getIntExtra("QuizNumber", 0);
+        listView = findViewById(R.id.select_list);
+
+        showList = new ArrayList<>();
 
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select name from wordlist", null); // where listnumber exists ( 범위 선택 받은 것의 list)
 
-        /*
-        for (int j = 0; j < cursor.getCount(); j++) {
-            //n번째 단어의 스키마
-            cursor.moveToNext();
-            showList.add(cursor.getString(1));
+        //일일 단어>나만의 단어로 순서 정렬해서 리스트 만듦
+        Cursor cursor = db.rawQuery("select * from wordlist where day_my=0", null);
+        while(cursor.moveToNext()){
+            showList.add(new ParentItem(cursor.getInt(0), cursor.getString(1)));
         }
-
+        cursor = db.rawQuery("select * from wordlist where day_my=1", null);
+        while(cursor.moveToNext()){
+            showList.add(new ParentItem(cursor.getInt(0), cursor.getString(1)));
+        }
         db.close();
-         */
 
+        MyAdapter adapter = new MyAdapter(showList);
+        listView.setAdapter(adapter);
 
         selected.setOnClickListener(new View.OnClickListener() { // 저장 버튼 눌리면 선택된 단어 리스트 배열로 putExtra 해 줌
 
             @Override
             public void onClick(View v) {
+
+                //putExtra할 리스트 만들기
+                boolean[] checkBoxState;
+                checkBoxState = adapter.checkBoxState;
+
+                selectedList = new ArrayList<>();
+                for(int i = 0; i < checkBoxState.length; i++){
+                    if(checkBoxState[i] == true){
+                        selectedList.add(showList.get(i).id_pk);
+                    }
+                }
+
                 if (QuizNum == 1) {
                     Intent intent1 = new Intent(WordListSelect.this, Quiz1.class);
-                    intent1.putExtra("ListNumber", showList);
+                    intent1.putExtra("ListNumber", selectedList);
                     //putExtra 단어장 리스트
-
-
                     startActivity(intent1);
                 }
                 if (QuizNum == 2) {
                     Intent intent1 = new Intent(WordListSelect.this, Quiz2.class);
+                    intent1.putExtra("ListNumber", selectedList);
                     //putExtra 단어장 리스트
                     startActivity(intent1);
                 }
@@ -71,41 +93,30 @@ public class WordListSelect extends AppCompatActivity {
 
         });
 
-        //-----------------------------------------------------------------------------------여기서부터 서치한 Custom Adaptor 코드
-
-        MyAdapter adapter = new MyAdapter(showList);
-
-        //listView = findViewById(R.id.select_list);
-        listView.setAdapter(adapter);
 
     }
 }
 
-
     class MyAdapter extends BaseAdapter {
 
         boolean[] checkBoxState;
+        ArrayList<ParentItem> myList;
 
-        ArrayList<String> myList;
-
-        public MyAdapter(ArrayList<String> myList) {
-
+        public MyAdapter(ArrayList<ParentItem> myList) {
             this.myList = myList;
             checkBoxState = new boolean[myList.size()];
         }
 
-        // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
+        // Adapter에 사용되는 데이터의 개수
         @Override
         public int getCount() {
-
             return myList.size();
         }
 
-        // position에 위치한 데이터를 화면에 출력하는데 사용될 View를 리턴. : 필수 구현
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            final Context context = parent.getContext();
+            Context context = parent.getContext();
 
             // 커스텀뷰 참조 획득.
             if (convertView == null) {
@@ -114,13 +125,13 @@ public class WordListSelect extends AppCompatActivity {
             }
 
             // position에 위치한 데이터 획득
-            String listViewItem = myList.get(position);
+            ParentItem listViewItem = myList.get(position);
 
             final LinearLayout lin = convertView.findViewById(R.id.lin);
             final CheckBox checkBox = convertView.findViewById(R.id.checkBox);
 
             // 아이템 내 각 위젯에 데이터 반영
-            checkBox.setText(listViewItem);
+            checkBox.setText(listViewItem.listName);
 
             checkBox.setOnClickListener(new CheckBox.OnClickListener() {
 
@@ -172,7 +183,7 @@ public class WordListSelect extends AppCompatActivity {
 
         // 지정한 위치(position)에 있는 데이터 리턴 : 필수 구현
         @Override
-        public Object getItem(int position) {
+        public ParentItem getItem(int position) {
 
             return myList.get(position);
         }

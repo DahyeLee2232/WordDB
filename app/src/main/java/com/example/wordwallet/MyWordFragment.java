@@ -22,6 +22,7 @@ public class MyWordFragment extends Fragment {
 
     Button addBtn;
     ExpandableListView listView;
+
     MyExpandableListAdapter adapter;
     ArrayList<ParentItem>  wordLists;        //단어장 이름
     ArrayList<ArrayList<ChildItem>> wordList;        //단어장 리스트
