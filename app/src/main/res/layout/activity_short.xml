@@ -61,5 +61,13 @@
         android:src="@drawable/line3"
         />
 
+    <ListView
+        android:id="@+id/shortWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide2"
+        android:divider="@null"
+        />
+
 
 </RelativeLayout>
