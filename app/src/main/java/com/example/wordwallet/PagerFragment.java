@@ -27,15 +27,7 @@ public class PagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_one_word, container, false);
 
-        Activity a = getActivity();
-
-        ImageButton prevBtn = a.findViewById(R.id.previous_btn);
-        ImageView wordImage = a.findViewById(R.id.wordimage);
-        ImageButton nextBtn = a.findViewById(R.id.nextbtn);
-        TextView word = a.findViewById(R.id.word);
-        TextView meaning = a.findViewById(R.id.meaning);
-
-
         return rootView;
     }
+
 }
