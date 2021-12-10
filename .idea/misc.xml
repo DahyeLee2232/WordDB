@@ -3,25 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/border.xml" value="0.359375" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/quiz_line.xml" value="0.246875" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/radius.xml" value="0.36041666666666666" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_dbactivity.xml" value="0.21603260869565216" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_myword_db.xml" value="0.21693840579710144" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_one_word.xml" value="0.22" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz1.xml" value="0.2921875" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_read_db.xml" value="0.21603260869565216" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_read_myword_db.xml" value="0.25" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_test.xml" value="0.1" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_word_list_select.xml" value="0.3390625" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_wwmain.xml" value="0.362357669122572" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/check_wordlist.xml" value="0.3390625" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_blank.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_myword.xml" value="0.16422805247225025" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_one_word.xml" value="0.1" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_quiz.xml" value="0.16422805247225025" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_todayword.xml" value="0.1" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_parent_today.xml" value="0.5" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/drawable/shape_itembackground.xml" value="0.22314814814814815" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_myword_db.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_one_word.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_profile.xml" value="0.18070652173913043" />
@@ -30,36 +24,38 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_quiz_result.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_read_myword_db.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_register.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_short.xml" value="0.18478260869565216" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_short_cut.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_word_list_select.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_word_view.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/activity_wwmain.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/check_wordlist.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/dialog_edit.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/fragment_myword.xml" value="0.20652173913043478" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/fragment_one_word.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/fragment_quiz.xml" value="0.2317629179331307" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/fragment_todayword.xml" value="0.20652173913043478" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/item_listview.xml" value="0.3079710144927536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/item_wordlist.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/list_item.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/roundcorner.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/only_radius.xml" value="0.5546875" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/quiz_line.xml" value="0.32592592592592595" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/drawable/radius.xml" value="0.32592592592592595" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_myword_db.xml" value="0.33" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_one_word.xml" value="0.33" />
+        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_myword_db.xml" value="0.40989583333333335" />
+        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_one_word.xml" value="0.5385416666666667" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz1.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz1_retry.xml" value="0.35052083333333334" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz2.xml" value="0.33" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz_result.xml" value="0.33" />
+        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz2.xml" value="0.6" />
+        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz_result.xml" value="0.7333333333333334" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz_result_retry.xml" value="0.39791666666666664" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_read_myword_db.xml" value="0.5" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_register.xml" value="0.33" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_short_cut.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_read_myword_db.xml" value="0.5385416666666667" />
+        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_register.xml" value="0.5385416666666667" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_word_list_select.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_wwmain.xml" value="0.2" />
+        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_wwmain.xml" value="0.40989583333333335" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/check_wordlist.xml" value="0.5385416666666667" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_myword.xml" value="0.40989583333333335" />
         <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_quiz.xml" value="0.5541666666666667" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/fragment_todayword.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/hamnd/AndroidStudioProjects/WordWallet/app/src/main/res/layout/item_wordlist.xml" value="0.30886075949367087" />
       </map>
     </option>
   </component>
