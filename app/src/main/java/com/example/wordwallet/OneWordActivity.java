@@ -2,10 +2,7 @@ package com.example.wordwallet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
@@ -14,13 +11,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,10 +23,10 @@ import java.util.ArrayList;
 
 //단어 하나씩 보여주는 activity
 
-public class OneWordActivity extends AppCompatActivity {
+public class OneWordActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton prevBtn;
-    ImageView nextBtn;
+    ImageButton nextBtn;
     ViewPager2 pager;
     MyStateAdapter adapter;
 
@@ -63,25 +57,24 @@ public class OneWordActivity extends AppCompatActivity {
         prevBtn = findViewById(R.id.previousbtn);
         nextBtn = findViewById(R.id.nextbtn);
 
-        prevBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int current = pager.getCurrentItem();
-                if(current != 0){
-                    pager.setCurrentItem(current-1);
-                }
-            }
-        });
+        prevBtn.setOnClickListener(this);
+        nextBtn.setOnClickListener(this);
+    }
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int current = pager.getCurrentItem();
-                if(current != adapter.getItemCount()){
-                    pager.setCurrentItem(current+1);
-                }
+    @Override
+    public void onClick(View view) {
+        if(view == prevBtn){
+            int current = pager.getCurrentItem();
+            if(current > 0){
+                pager.setCurrentItem(current-1);
             }
-        });
+        }
+        else if(view == nextBtn){
+            int current = pager.getCurrentItem();
+            if(current != adapter.getItemCount()){
+                pager.setCurrentItem(current+1);
+            }
+        }
     }
 
     private class MyStateAdapter extends RecyclerView.Adapter<Holder> {
