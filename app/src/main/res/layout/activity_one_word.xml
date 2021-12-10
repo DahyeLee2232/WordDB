@@ -22,10 +22,26 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/line2" />
 
+    <ImageButton
+        android:id="@+id/previousbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/left" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
     </androidx.viewpager2.widget.ViewPager2>
+
+    <ImageButton
+        android:id="@+id/nextbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/right" />
 
 </RelativeLayout>

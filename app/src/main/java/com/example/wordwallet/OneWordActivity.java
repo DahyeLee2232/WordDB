@@ -12,7 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +31,8 @@ import java.util.ArrayList;
 
 public class OneWordActivity extends AppCompatActivity {
 
+    ImageButton prevBtn;
+    ImageView nextBtn;
     ViewPager2 pager;
     MyStateAdapter adapter;
 
@@ -39,13 +45,13 @@ public class OneWordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_one_word);
 
         Intent intent = getIntent();
-        listNumber = intent.getIntExtra("listnumber", 0);
+        listNumber = intent.getIntExtra("wordlist", 0);
 
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-
         Cursor cursor = db.rawQuery("select * from word where listnumber="+listNumber, null);
 
+        words = new ArrayList<>();
         while (cursor.moveToNext()){
             words.add(new ChildItem(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
         }
@@ -54,40 +60,28 @@ public class OneWordActivity extends AppCompatActivity {
         adapter = new MyStateAdapter(words);
         pager.setAdapter(adapter);
 
-    }
+        prevBtn = findViewById(R.id.previousbtn);
+        nextBtn = findViewById(R.id.nextbtn);
 
-    class Holder extends RecyclerView.ViewHolder{
-
-        ImageButton prevBtn;
-        ImageView wordImage;
-        ImageButton nextBtn;
-        TextView word;
-        TextView meaning;
-
-        public Holder(@NonNull View v) {
-            super(v);
-            prevBtn = v.findViewById(R.id.previous_btn);
-            wordImage = v.findViewById(R.id.wordimage);
-            nextBtn = v.findViewById(R.id.nextbtn);
-            word = v.findViewById(R.id.word);
-            meaning = v.findViewById(R.id.meaning);
-
-
-            //클릭 리스너
-            prevBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
+        prevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int current = pager.getCurrentItem();
+                if(current != 0){
+                    pager.setCurrentItem(current-1);
                 }
-            });
+            }
+        });
 
-            nextBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int current = pager.getCurrentItem();
+                if(current != adapter.getItemCount()){
+                    pager.setCurrentItem(current+1);
                 }
-            });
-        }
+            }
+        });
     }
 
     private class MyStateAdapter extends RecyclerView.Adapter<Holder> {
@@ -112,14 +106,32 @@ public class OneWordActivity extends AppCompatActivity {
             holder.word.setText(words.get(position).word);
             holder.meaning.setText(words.get(position).meaning);
 
-            if(words.get(position).imageLink.length() == 0){
-                holder.wordImage.setImageResource();
+            if(words.get(position).imageLink == null){
+                holder.wordImage.setImageResource(R.drawable.ww_logo);
+            }
+            else {
+                Bitmap bitmap = BitmapFactory.decodeFile(words.get(position).imageLink);
+                holder.wordImage.setImageBitmap(bitmap);
             }
         }
 
         @Override
         public int getItemCount() {
             return words.size();
+        }
+    }
+
+    class Holder extends RecyclerView.ViewHolder{
+
+        ImageView wordImage;
+        TextView word;
+        TextView meaning;
+
+        public Holder(@NonNull View v) {
+            super(v);
+            wordImage = v.findViewById(R.id.wordimage);
+            word = v.findViewById(R.id.word);
+            meaning = v.findViewById(R.id.meaning);
         }
     }
 

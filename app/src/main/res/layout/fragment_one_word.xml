@@ -4,53 +4,30 @@
     android:layout_width="match_parent"
     android:padding="10dp">
 
-    <RelativeLayout
-        android:id="@+id/rel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/previousbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/left"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"/>
-
-        <ImageView
-            android:id="@+id/wordimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
-
-        <ImageButton
-            android:id="@+id/nextbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/right"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/wordimage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/ww_logo"
+        android:layout_marginBottom="20dp"
+        android:layout_centerInParent="true"/>
 
     <TextView
         android:id="@+id/word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="단어"
-        android:layout_below="@+id/rel"
+        android:layout_below="@+id/wordimage"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"/>
-
+        android:text="단어"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/meaning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="뜻"
         android:layout_below="@+id/word"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"/>
-
+        android:text="뜻"
+        android:textAlignment="center" />
 
 </RelativeLayout>

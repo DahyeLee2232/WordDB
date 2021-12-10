@@ -57,5 +57,13 @@
         android:text="이미지 추가"
         android:textAlignment="center" />
 
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_edit"
+        android:alpha="70"
+        android:src="@drawable/ww_logo"/>
+
 
 </RelativeLayout>
