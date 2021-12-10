@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class ShortActivity extends AppCompatActivity {
     VideoView videoView;
     Intent intent;
-    int id;
+    int id = 1;
     ListView listView;
 
 
@@ -51,8 +52,6 @@ public class ShortActivity extends AppCompatActivity {
         id = intent.getIntExtra("wordlist",0);
 
 
-
-
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 //        Cursor cursor = db.rawQuery("select * from word where listnumber=?", new String[]{String.valueOf(Listnumber)}); // where listnumber exists ( 범위 선택 받은 것의 list)
@@ -67,7 +66,7 @@ public class ShortActivity extends AppCompatActivity {
             mean[i] = cursor.getString(2);
         }
 
-
+        displayList();
 
         //Video 1
         if(id == 1) {
@@ -79,8 +78,8 @@ public class ShortActivity extends AppCompatActivity {
         }
 
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_2, word);
-        listView.setAdapter(listAdapter);
+//        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_2, word);
+//        listView.setAdapter(listAdapter);
 
 
 
@@ -123,13 +122,20 @@ public class ShortActivity extends AppCompatActivity {
         DBHelper helper2 = new DBHelper(this);
         SQLiteDatabase database = helper2.getReadableDatabase();
 
-        Cursor cursor = database.rawQuery("select word, meaning from wordlist where listnumber = ?", new String[] {"%" + id + "%"} , null);
+//        Cursor cursor = database.rawQuery("select word, meaning from word where listnumber = ?", new String[] {"%" + id + "%"} , null);
+
+        Cursor cursor = database.rawQuery("select word, meaning from word where listnumber = 2", null);
+
+
 
         ListViewAdapter adapter = new ListViewAdapter();
 
         while(cursor.moveToNext()) {
             adapter.addItemToList(cursor.getString(0), cursor.getString(1));
+            Log.e("tag", "test : " + cursor.getString(0) + cursor.getString(1));
         }
+
+
 
         listView.setAdapter(adapter);
 

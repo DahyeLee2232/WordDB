@@ -38,13 +38,13 @@ public class ListViewAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.list_item,viewGroup,false);
         }
 
-        TextView tvNum = (TextView)view.findViewById(R.id.listWord);
-        TextView tvName = (TextView)view.findViewById(R.id.listMean);
+        TextView tvWord = (TextView)view.findViewById(R.id.listWord);
+        TextView tvMean = (TextView)view.findViewById(R.id.listMean);
 
         ListViewAdapterData listdata = list.get(i);
 
-        tvNum.setText(listdata.getWord());
-        tvName.setText(listdata.getMean());
+        tvWord.setText(listdata.getWord());
+        tvMean.setText(listdata.getMean());
 
         return view;
     }

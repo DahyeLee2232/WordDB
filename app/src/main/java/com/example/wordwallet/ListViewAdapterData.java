@@ -8,6 +8,6 @@ public class ListViewAdapterData {
     public void setWord(String word){this.word = word;}
     public void setMean(String mean){this.mean = mean;}
 
-    public String getWord(){return this.mean;}
+    public String getWord(){return this.word;}
     public String getMean(){return this.mean;}
 }
