@@ -13,9 +13,10 @@
             android:id="@+id/previousbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/left"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:src="@drawable/left"
+            android:backgroundTint="#00FFFFFF"/>
 
         <ImageView
             android:id="@+id/wordimage"
@@ -27,9 +28,10 @@
             android:id="@+id/nextbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:src="@drawable/right"
+            android:backgroundTint="#00FFFFFF"/>
 
     </RelativeLayout>
 

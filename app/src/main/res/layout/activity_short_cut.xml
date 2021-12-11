@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:contentDescription="@string/Stringimg"
-        android:src="@drawable/menu" />
+        android:src="@drawable/user" />
 
 
     <LinearLayout
@@ -23,7 +23,8 @@
             android:id="@+id/previous_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/left"             />
+            android:src="@drawable/left"
+            android:backgroundTint="#00FFFFFF"/>
 
         <TextView
             android:id="@+id/list_name"
@@ -34,13 +35,14 @@
             android:textColor="#000"
             android:gravity="center"
             android:textAlignment="center"
-            android:textSize="15sp"/>
+            android:textSize="18sp"/>
 
         <ImageButton
             android:id="@+id/nextbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right"/>
+            android:src="@drawable/right"
+            android:backgroundTint="#00FFFFFF"/>
 
     </LinearLayout>
 

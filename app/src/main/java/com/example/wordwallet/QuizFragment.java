@@ -6,20 +6,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 
 import androidx.fragment.app.Fragment;
 
 public class QuizFragment extends Fragment {
 
-    Button Q1, Q2, Q3;
+    Button Q1, Q2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view =  inflater.inflate(R.layout.fragment_quiz, container, false);
 
+
+        return view;
+
+    }
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         Q1 = (Button) view.findViewById(R.id.Q1);
         Q2 = (Button) view.findViewById(R.id.Q2);
-        Q3 = (Button) view.findViewById(R.id.Q3);
 
         Q1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,8 +43,7 @@ public class QuizFragment extends Fragment {
                 startActivity(intent2);
             }
         });
-        return view;
 
-    }
+    };
 
 }
