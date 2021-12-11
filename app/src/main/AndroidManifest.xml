@@ -31,13 +31,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WordViewActivity"
-            android:exported="true">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Quiz1_retry"
             android:exported="true">
             <intent-filter>
