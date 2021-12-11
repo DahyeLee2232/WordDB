@@ -5,16 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +29,7 @@ import java.util.ArrayList;
 
 public class OneWordActivity extends AppCompatActivity implements View.OnClickListener {
 
+    Button deleteWordBtn;
     ImageButton prevBtn;
     ImageButton nextBtn;
     ViewPager2 pager;
@@ -43,12 +48,21 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
 
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from word where listnumber="+listNumber, null);
 
+        //일일 단어장인 경우 단어 삭제 버튼 투명처리해서 없애기
+        Cursor listCursor = db.rawQuery("select day_my from wordlist where _id="+listNumber, null);
+        listCursor.moveToNext();
+        deleteWordBtn = findViewById(R.id.delete_word_btn);
+        if(listCursor.getInt(0) == 0){
+            deleteWordBtn.setVisibility(View.GONE);
+        }
+
+        Cursor cursor = db.rawQuery("select * from word where listnumber="+listNumber, null);
         words = new ArrayList<>();
         while (cursor.moveToNext()){
             words.add(new ChildItem(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
         }
+        db.close();
 
         pager = findViewById(R.id.view_pager);
         adapter = new MyStateAdapter(words);
@@ -57,13 +71,42 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
         prevBtn = findViewById(R.id.previousbtn);
         nextBtn = findViewById(R.id.nextbtn);
 
+        deleteWordBtn.setOnClickListener(this);
         prevBtn.setOnClickListener(this);
         nextBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if(view == prevBtn){
+        if(view == deleteWordBtn){
+            AlertDialog.Builder adBuilder = new AlertDialog.Builder(this)
+                    .setTitle("단어 삭제")
+                    .setMessage("삭제 후 복구가 불가능합니다. 삭제하시겠습니까?")
+                    .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            int current = pager.getCurrentItem();
+                            DBHelper helper = new DBHelper(OneWordActivity.this);
+                            SQLiteDatabase db = helper.getWritableDatabase();
+                            //단어 삭제
+                            Log.d("dialog", "아이디 값"+words.get(current).id_pk);
+                            db.execSQL("delete from word where _id="+words.get(current).id_pk +"not null", null);
+                            Log.d("dialog", "after query");
+
+                            //배열에서도 지워주기
+                            //adapter.words.remove(current);
+                            //words.remove(current);
+                            db.close();
+                        }
+                    })
+                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) { }
+                    });
+            AlertDialog deleteWordPopUp = adBuilder.create();
+            deleteWordPopUp.show();
+        }
+        else if(view == prevBtn){
             int current = pager.getCurrentItem();
             if(current > 0){
                 pager.setCurrentItem(current-1);
