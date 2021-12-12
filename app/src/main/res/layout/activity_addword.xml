@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:minHeight="48dp"
         android:text="새 단어"
@@ -24,10 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:background="#00FFFFFF"
         android:minHeight="48dp"
         android:text="저장"
-        android:textAlignment="center"
-        android:background="#00FFFFFF"/>
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/word_edit"
@@ -56,6 +58,16 @@
         android:background="#00FFFFFF"
         android:text="이미지 추가"
         android:textAlignment="center" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/image_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:alpha="100"
+         />
 
 
 </RelativeLayout>

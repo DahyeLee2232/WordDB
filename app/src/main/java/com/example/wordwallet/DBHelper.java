@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     /**
-     * 단어장리스트 db는 id와 이름, 구분자 day_my(0이면 일일단어 1이면 내 단어)를 가진다
+     * 단어장리스트 db는 id와 이름, 구분자 day_my(0이면 일일단어 1이면 내 단어 2면 북마크됨)를 가진다
      * 둘 다 null이 되면 안 됨
      *
      * 단어 DB는 단어(word), 뜻(meaning), 이미지(image) 속성이 존재하고 소속된 단어장 리스트 번호를 가진다
@@ -37,9 +37,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(wordSQL);
 
         //기본 일일 단어장
-        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 1 - CNN_1"});
-        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 2 - CNN_2"});
-        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 3 - CNN_3"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 1"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 2"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 3"});
 
         //일일 단어장에 단어 추가
         db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 1)", new String[] {"government", "정부"});
@@ -61,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 3)", new String[] {"agreement", "합의"});
 
         //기본 제공 나만의 단어장 하나 추가
-        db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {"나만의 단어장 1"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {"나만의 단어장"});
 
 
 

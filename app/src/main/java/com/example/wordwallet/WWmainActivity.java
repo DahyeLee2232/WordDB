@@ -24,6 +24,8 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
     private MyWordFragment myWordFragment;
     private QuizFragment quizFragment;
 
+    int Quiz;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,14 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
         FragmentTransaction tf = manager.beginTransaction();
         tf.add(R.id.main_container, todayWordFragment);
         tf.commit();
+
+        Intent intent = getIntent();
+        Quiz = intent.getIntExtra("Quiz",0);
+
+        if(Quiz==1){
+            FragmentTransaction quiz = manager.beginTransaction();
+            tf.replace(R.id.main_container, quizFragment);
+        }
     }
 
     @Override

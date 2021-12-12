@@ -7,6 +7,9 @@
     <ExpandableListView
         android:id="@+id/expandable_wordlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="#00FFFFFF"
+        android:dividerHeight="20dp"/>
+
 
 </RelativeLayout>

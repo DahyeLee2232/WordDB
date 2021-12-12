@@ -73,8 +73,9 @@ public class MyWordFragment extends Fragment {
                                     db = helper.getWritableDatabase();
                                     db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {name});
                                     db.close();
-                                    adapter.notifyDataSetChanged();
                                 }
+
+                                adapter.notifyDataSetChanged();
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {

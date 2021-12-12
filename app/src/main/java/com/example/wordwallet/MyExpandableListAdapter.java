@@ -83,6 +83,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
             public void onClick(View view) {
                 //단어장 추가 화면으로 넘김
                 Intent intent = new Intent(context, AddWordActivity.class);
+                intent.putExtra("listnumber", parentItems.get(id).id_pk);
                 context.startActivity(intent);
                 //화면 갱신
                 notifyDataSetChanged();
@@ -93,9 +94,9 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
             @Override
             public void onClick(View view) {
                 //단어장 뷰페이저로 넘어간다
-                Intent intent = new Intent(context, WordViewActivity.class);
+                Intent intent = new Intent(context, OneWordActivity.class);
                 //이 때 단어장 하나를 준다
-                intent.putExtra("wordlist", childItems.get((int) getGroupId(id)));
+                intent.putExtra("wordlist", parentItems.get((int) getGroupId(id)).id_pk);
                 context.startActivity(intent);
             }
         });

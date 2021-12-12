@@ -19,7 +19,7 @@ import java.util.Collections;
 
 public class Quiz2_retry extends AppCompatActivity{
 
-    Button question, nextBtn, exit;
+    Button question, nextBtn;
     EditText answer;
     TextView current;
     int correctCount = 0;
@@ -44,7 +44,6 @@ public class Quiz2_retry extends AppCompatActivity{
         answer = findViewById(R.id.answer);
         nextBtn = findViewById(R.id.nextbtn);
         current = findViewById(R.id.QuestionIndex2);
-        exit = findViewById(R.id.exit);
 
 
         correct = MediaPlayer.create(this, R.raw.correct);
@@ -75,13 +74,6 @@ public class Quiz2_retry extends AppCompatActivity{
 
         displayQuestion2(currentIndex);
 
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Quiz2_retry.this, WWmainActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         nextBtn.setOnClickListener(new View.OnClickListener(){
@@ -130,6 +122,11 @@ public class Quiz2_retry extends AppCompatActivity{
                         intent.putExtra("QuizNumber",2);
                         intent.putExtra("retry",1);
                         startActivity(intent);
+                    }
+
+                    else{
+                        currentIndex++;
+                        displayQuestion2(currentIndex);
                     }
 
                 }

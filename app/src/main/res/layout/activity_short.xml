@@ -7,18 +7,12 @@
 
     <ImageView
         android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/menu"
-        android:contentDescription="@string/Stringimg"/>
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/Stringimg"
+        android:src="@drawable/user"
+        android:alpha="0"/>
 
-    <Button
-        android:id="@+id/exit"
-        android:layout_width="15dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/menu"
-        android:layout_marginTop="17dp"
-        android:background="@drawable/left"/>
 
     <TextView
         android:id="@+id/quiz"
@@ -26,11 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/menu"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/exit"
         android:gravity="center"
         android:text="@string/shortCut"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/slide1"
@@ -48,26 +41,23 @@
         android:layout_below="@id/slide1"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
-        android:scaleType="center"
-        />
+        android:scaleType="center" />
 
     <ImageView
         android:id="@+id/slide2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/video"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/Stringimg"
-        android:src="@drawable/line3"
-        />
+        android:src="@drawable/line3" />
 
     <ListView
         android:id="@+id/shortWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/slide2"
-        android:divider="@null"
-        />
+        android:divider="@null" />
 
 
 </RelativeLayout>

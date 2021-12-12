@@ -98,6 +98,17 @@ public class TodayExpandableListAdapter extends BaseExpandableListAdapter implem
             }
         });
 
+        //북마크
+        bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //check가 있으면
+                if(bookmark.isChecked()){
+
+                }
+            }
+        });
+
         return v;
     }
 
