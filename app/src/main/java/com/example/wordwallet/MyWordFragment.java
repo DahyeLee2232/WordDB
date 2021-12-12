@@ -76,6 +76,7 @@ public class MyWordFragment extends Fragment {
                                     Cursor cursor = db.rawQuery("select * from wordlist order by rowid desc limit 1", null);
                                     cursor.moveToNext();
                                     wordLists.add(new ParentItem(cursor.getInt(0), cursor.getString(1)));
+                                    wordList.add(new ArrayList<>());
 
                                     db.close();
                                     adapter.notifyDataSetChanged();

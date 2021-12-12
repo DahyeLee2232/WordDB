@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +19,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Quiz2_retry extends AppCompatActivity{
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
 
     Button question, nextBtn;
     EditText answer;
     TextView current;
     int correctCount = 0;
     MediaPlayer correct, incorrect;
+    ImageView home;
 
     ArrayList<ArrayList<String>> wordData  = new ArrayList<ArrayList<String>>();
     ArrayList<String> Q = new ArrayList<String>();
@@ -48,6 +54,8 @@ public class Quiz2_retry extends AppCompatActivity{
 
         correct = MediaPlayer.create(this, R.raw.correct);
         incorrect = MediaPlayer.create(this, R.raw.incorrect);
+
+        home = findViewById(R.id.menu);
 
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -74,7 +82,16 @@ public class Quiz2_retry extends AppCompatActivity{
 
         displayQuestion2(currentIndex);
 
+        home.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Quiz2_retry.this, WWmainActivity.class);
+                intent.putExtra("Quiz",1);
+                startActivity(intent);
+
+            }
+        });
 
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -103,6 +120,10 @@ public class Quiz2_retry extends AppCompatActivity{
                         displayQuestion2(currentIndex);
                     }
 
+                }
+
+                if(answer.getText().toString().length()==0){
+                    Toast.makeText(Quiz2_retry.this,"답을 입력해주세요",Toast.LENGTH_SHORT).show();
                 }
 
                 else{ //오답 -> 오답 Toast 띄우고 answer 초기화 및 wrongData에 저장

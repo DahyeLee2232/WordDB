@@ -9,8 +9,6 @@
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_quiz1.xml" value="0.2921875" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_read_db.xml" value="0.21603260869565216" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_read_myword_db.xml" value="0.25" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_short.xml" value="0.9" />
-        <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_short_cut.xml" value="0.33" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_test.xml" value="0.1" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_word_list_select.xml" value="0.20878623188405798" />
         <entry key="..\:/Users/Ah/AndroidStudioProjects/WordWallet/app/src/main/res/layout/activity_wwmain.xml" value="0.362357669122572" />
@@ -47,6 +45,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/project/WordWallet/app/src/main/res/layout/roundcorner.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project_2/WordWallet/app/src/main/res/layout/activity_login.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project_2/WordWallet/app/src/main/res/layout/activity_profile.xml" value="0.2786458333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/project_2/WordWallet/app/src/main/res/layout/activity_quiz1.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project_2/WordWallet/app/src/main/res/layout/activity_quiz2.xml" value="0.24592391304347827" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project_2/WordWallet/app/src/main/res/layout/activity_quiz_result.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/project_2/WordWallet/app/src/main/res/layout/activity_register.xml" value="0.21197916666666666" />
