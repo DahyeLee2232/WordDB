@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.os.Bundle;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.MediaController;
@@ -22,7 +25,7 @@ public class ShortActivity extends AppCompatActivity {
     Intent intent;
     int id = 1;
     ListView listView;
-
+    ImageView wordBtn;
 
     ArrayList<ParentItem>  wordLists;        //단어장 이름
     ArrayList<ArrayList<ChildItem>> wordList;        //단어장 리스트
@@ -39,6 +42,8 @@ public class ShortActivity extends AppCompatActivity {
         Uri videoUri;
         listView = (ListView)findViewById(R.id.shortWord);
 
+
+
         //adapter에 쓰는 변수들
         wordLists = new ArrayList<>();
         wordList = new ArrayList<>();
@@ -50,6 +55,18 @@ public class ShortActivity extends AppCompatActivity {
         // 인텐트 받아오는 부분
         intent= getIntent();
         id = intent.getIntExtra("wordlist",0);
+
+
+        //단어 출력으로 넘어가는 버튼
+        wordBtn = findViewById(R.id.word_btn);
+        wordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(getApplicationContext(), OneWordActivity.class);
+                intent1.putExtra("wordlist", id);
+                startActivity(intent1);
+            }
+        });
 
 
         DBHelper helper = new DBHelper(this);
