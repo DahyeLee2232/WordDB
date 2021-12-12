@@ -108,36 +108,6 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
         return fullPath;
     }
 
-    public static String makePath(Context context, Uri uri){
-        ContentResolver contentResolver = context.getContentResolver();
-
-        if(contentResolver == null){
-            return null;
-        }
-
-        String filePath = context.getApplicationInfo().dataDir + File.separator
-                +System.currentTimeMillis();
-
-        File file = new File(filePath);
-        try {
-            InputStream inputStream = contentResolver.openInputStream(uri);
-            if(inputStream == null){
-                return null;
-            }
-            OutputStream outputStream = new FileOutputStream(file);
-            byte[] buf = new byte[1024];
-            int len;
-            while((len = inputStream.read(buf)) > 0){
-                outputStream.write(buf, 0, len);
-                outputStream.close();
-                inputStream.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return file.getAbsolutePath();
-    }
-
     @Override
     public void onClick(View view) {
 
