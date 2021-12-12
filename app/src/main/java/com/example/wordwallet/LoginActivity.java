@@ -3,6 +3,7 @@ package com.example.wordwallet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,23 +42,29 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //로그인 요청
-                String strEmail = mEtEmail.getText().toString();
-                String strPwd = mEtPwd.getText().toString();
 
-                mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            // 로그인 성공!!
-                            Intent intent = new Intent(LoginActivity.this, WWmainActivity.class);
-                            startActivity(intent);
-                            finish(); // 현재 액티비티 파괴
-                        } else {
-                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                if(!mEtEmail.getText().toString().equals("") && !mEtPwd.getText().toString().equals("")) {
+                    String strEmail = mEtEmail.getText().toString();
+                    String strPwd = mEtPwd.getText().toString();
 
+                    mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                // 로그인 성공!!
+                                Intent intent = new Intent(LoginActivity.this, WWmainActivity.class);
+                                startActivity(intent);
+                                finish(); // 현재 액티비티 파괴
+                            } else {
+                                Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+
+                            }
                         }
-                    }
-                });
+                    });
+                } else {
+                    Toast.makeText(LoginActivity.this, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
