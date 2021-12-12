@@ -165,6 +165,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
             }
 
             //화면 갱신 코드
+
             db.close();
             finish();
         }

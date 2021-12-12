@@ -2,13 +2,17 @@ package com.example.wordwallet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -18,6 +22,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -136,7 +142,7 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
     private class MyStateAdapter extends RecyclerView.Adapter<Holder> {
         ArrayList<ChildItem> words;
 
-        MyStateAdapter(ArrayList<ChildItem> words){
+        MyStateAdapter(ArrayList<ChildItem> words) {
             this.words = words;
         }
 
@@ -150,17 +156,44 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
 
         }
 
-
         public void onBindViewHolder(@NonNull Holder holder, int position) {
             holder.word.setText(words.get(position).word);
             holder.meaning.setText(words.get(position).meaning);
 
             if(words.get(position).imageLink != null){
-                Uri uri = Uri.parse(words.get(position).imageLink);
-                holder.wordImage.setImageURI(uri);
+                Uri uri = Uri.parse("file://" + words.get(position).imageLink);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                Bitmap bitmap = null;
+                try {
+                    bitmap = resize(getApplicationContext(), uri, options);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                holder.wordImage.setImageBitmap(bitmap);
                 holder.wordImage.setAlpha(1.F);
             }
         }
+
+        public Bitmap resize(Context context, Uri uri, BitmapFactory.Options options) throws FileNotFoundException {
+
+            BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options); // 1번
+
+            final int height = options.outHeight;
+            final int width = options.outWidth;
+
+            final int reqWidth = 300;
+            final int reqHeight = 400;
+
+            if(height > reqHeight || width > reqWidth){
+                final int heightRatio = Math.round((float) height / (float) reqWidth);
+                final int widthRatio = Math.round((float) width / (float) reqWidth);
+                options.inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+            }
+
+            Bitmap bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options); //3번
+            return bitmap;
+        }
+
 
         @Override
         public int getItemCount() {

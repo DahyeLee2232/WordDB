@@ -92,10 +92,6 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
                 Intent intent = new Intent(context, AddWordActivity.class);
                 intent.putExtra("listnumber", parentItems.get(id).id_pk);
                 context.startActivity(intent);
-                //화면 갱신
-                FragmentTransaction ft = fragment.getParentFragmentManager().beginTransaction();
-                ft.detach(fragment).attach(fragment).commit();
-                notifyDataSetChanged();
             }
         });
 
