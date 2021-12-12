@@ -1,8 +1,17 @@
 package com.example.wordwallet;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,8 +25,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 public class AddWordActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,30 +62,77 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1 && resultCode == RESULT_OK){
-            imageLink = data.getDataString();
-            uri = data.getData();
-            Log.d("result", imageLink);
+            if(data != null){
+                uri = data.getData();
+            }
+            if(uri != null){
+                imageView.setImageURI(uri);
+                imageLink = getFullPathFromUri(this, uri);
+                Log.d("result", imageLink);
+            }
         }
+    }
+
+    public String getFullPathFromUri(Context context, Uri fileUri) {
+        String fullPath = null;
+        final String column = "_data";
+        Cursor cursor = context.getContentResolver().query(fileUri, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            String document_id = cursor.getString(0);
+            if (document_id == null) {
+                for (int i=0; i < cursor.getColumnCount(); i++) {
+                    if (column.equalsIgnoreCase(cursor.getColumnName(i))) {
+                        fullPath = cursor.getString(i);
+                        break;
+                    }
+                }
+            } else {
+                document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+                cursor.close();
+
+                final String[] projection = {column};
+                try {
+                    cursor = context.getContentResolver().query(
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                            projection, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                        fullPath = cursor.getString(cursor.getColumnIndexOrThrow(column));
+                    }
+                } finally {
+                    if (cursor != null) cursor.close();
+                }
+            }
+        }
+        return fullPath;
     }
 
     @Override
     public void onClick(View view) {
 
         if(view.getId() == R.id.image_edit){
-            //이미지 추가 버튼을 누르면 기본 앱 갤러리로 넘어가서 사진을 골라온다
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-            intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, 1);
 
-            //선택된 이미지 표시
-            if(uri != null){
-                try {
-                    InputStream in = getContentResolver().openInputStream(uri);
-                    Bitmap bitmap = BitmapFactory.decodeStream(in);
-                    imageView.setImageBitmap(bitmap);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+            int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if(permission == PackageManager.PERMISSION_DENIED){
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            }
+            else{
+                //이미지 추가 버튼을 누르면 기본 앱 갤러리로 넘어가서 사진을 골라온다
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, 1);
+
+                //선택된 이미지 표시
+                if(uri != null){
+                    try {
+                        InputStream in = getContentResolver().openInputStream(uri);
+                        Bitmap bitmap = BitmapFactory.decodeStream(in);
+                        imageView.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -101,6 +161,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
                 //사진이 있으면 이미지링크 포함해서 insert
                 db.execSQL("insert into word (word, meaning, imagelink, listnumber) " +
                         "values (?, ?, ?, "+ listNumber +")", new String[]{word, meaning, imageLink});
+                Log.d("db", word + meaning + imageLink);
             }
 
             //화면 갱신 코드

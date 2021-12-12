@@ -96,7 +96,7 @@ public class QuizResult extends AppCompatActivity {
 
                 }
                 if(QuizNumber==2){
-                    Intent intent2 = new Intent(QuizResult.this , Quiz1_retry.class);
+                    Intent intent2 = new Intent(QuizResult.this , Quiz2_retry.class);
                     intent2.putExtra("wrongQ", wrongReviewQ);
                     intent2.putExtra("wrongA", wrongReviewA);
                     intent2.putExtra("wrongCount", (wrongCount-1));
