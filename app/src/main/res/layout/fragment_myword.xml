@@ -12,17 +12,7 @@
         android:background="@drawable/radius"
 
         android:text="단어장 추가"
-        android:textSize="13sp"
-        android:layout_toLeftOf="@+id/del_Btn"/>
-
-    <Button
-        android:id="@+id/del_Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="단어장 삭제"
-        android:textSize="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
+        android:textSize="13sp"/>
 
     <ExpandableListView
         android:id="@+id/expandable_wordlist"
