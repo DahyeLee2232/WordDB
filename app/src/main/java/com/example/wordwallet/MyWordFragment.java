@@ -35,7 +35,7 @@ public class MyWordFragment extends Fragment {
 
         listView = view.findViewById(R.id.expandable_wordlist);
         listView.setGroupIndicator(null);
-        adapter = new MyExpandableListAdapter(getContext(), wordLists, wordList);
+        adapter = new MyExpandableListAdapter(getContext(), this, wordLists, wordList);
         listView.setAdapter(adapter);
         //단어장 펼침 닫힘
 
@@ -76,6 +76,7 @@ public class MyWordFragment extends Fragment {
                                     Cursor cursor = db.rawQuery("select * from wordlist order by rowid desc limit 1", null);
                                     cursor.moveToNext();
                                     wordLists.add(new ParentItem(cursor.getInt(0), cursor.getString(1)));
+                                    wordList.add(new ArrayList<>());
 
                                     db.close();
                                     adapter.notifyDataSetChanged();

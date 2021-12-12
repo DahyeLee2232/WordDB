@@ -2,6 +2,8 @@ package com.example.wordwallet;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +11,15 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import java.util.ArrayList;
 
 public class MyExpandableListAdapter extends BaseExpandableListAdapter implements android.widget.ExpandableListAdapter {
 
     Context context;
+    MyWordFragment fragment;
     ArrayList<ParentItem> parentItems;
     //key는 단어장 리스트의 id_pk, value는 단어장 이름
     ArrayList<ArrayList<ChildItem>> childItems;
@@ -21,8 +27,9 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
 
 
 
-    public MyExpandableListAdapter(Context context, ArrayList<ParentItem> parentItems, ArrayList<ArrayList<ChildItem>> childItems){
+    public MyExpandableListAdapter(Context context, MyWordFragment fragment, ArrayList<ParentItem> parentItems, ArrayList<ArrayList<ChildItem>> childItems){
         this.context = context;
+        this.fragment = fragment;
         this.parentItems = parentItems;
         this.childItems = childItems;
     }
@@ -81,11 +88,13 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter implement
         addWordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //단어장 추가 화면으로 넘김
+                //단어 추가 화면으로 넘김
                 Intent intent = new Intent(context, AddWordActivity.class);
                 intent.putExtra("listnumber", parentItems.get(id).id_pk);
                 context.startActivity(intent);
                 //화면 갱신
+                FragmentTransaction ft = fragment.getParentFragmentManager().beginTransaction();
+                ft.detach(fragment).attach(fragment).commit();
                 notifyDataSetChanged();
             }
         });
