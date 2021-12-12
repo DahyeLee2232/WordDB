@@ -35,7 +35,7 @@ public class MyWordFragment extends Fragment {
 
         listView = view.findViewById(R.id.expandable_wordlist);
         listView.setGroupIndicator(null);
-        adapter = new MyExpandableListAdapter(getContext(), wordLists, wordList);
+        adapter = new MyExpandableListAdapter(getContext(), this, wordLists, wordList);
         listView.setAdapter(adapter);
         //단어장 펼침 닫힘
 
