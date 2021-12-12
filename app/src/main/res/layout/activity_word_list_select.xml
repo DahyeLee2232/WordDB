@@ -4,9 +4,6 @@
     android:padding="30dp"
     android:orientation="vertical">
 
-
-
-
     <RelativeLayout
         android:id="@+id/background"
         android:layout_width="350dp"
@@ -22,13 +19,12 @@
             android:text="범위 설정"
             android:textSize="18sp" />
 
-        <Button
+        <TextView
             android:id="@+id/selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/selectList"
-            android:layout_marginLeft="80dp"
-            android:layout_toRightOf="@id/selectList"
+            android:layout_alignParentRight="true"
             android:textColor="#FF000000"
             android:background="#00FFFFFF"
             android:text="저장" />
@@ -39,8 +35,8 @@
             android:layout_height="500dp"
             android:layout_below="@id/selectList"
             android:choiceMode="multipleChoice"
-            android:paddingTop="10dp"
-            android:divider="#00FFFFFF"/>
+            android:divider="#00FFFFFF"
+            android:paddingTop="10dp" />
 
 
     </RelativeLayout>

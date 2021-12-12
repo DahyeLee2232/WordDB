@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class WordListSelect extends AppCompatActivity {
 
     Intent intent;
     int QuizNum;
-    Button selected;
+    TextView selected;
     ListView listView;
 
     //단어장 목록
