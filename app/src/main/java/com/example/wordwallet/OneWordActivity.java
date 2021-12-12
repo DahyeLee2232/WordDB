@@ -146,10 +146,7 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
             holder.word.setText(words.get(position).word);
             holder.meaning.setText(words.get(position).meaning);
 
-            if(words.get(position).imageLink == null){
-                holder.wordImage.setImageResource(R.drawable.ww_logo);
-            }
-            else {
+            if(words.get(position).imageLink != null){
                 Uri uri = Uri.parse(words.get(position).imageLink);
                 holder.wordImage.setImageURI(uri);
             }

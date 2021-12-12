@@ -29,6 +29,7 @@
             android:layout_alignBaseline="@id/selectList"
             android:layout_marginLeft="80dp"
             android:layout_toRightOf="@id/selectList"
+            android:textColor="#FF000000"
             android:background="#00FFFFFF"
             android:text="저장" />
 
