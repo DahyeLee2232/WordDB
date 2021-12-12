@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 //단어 하나씩 보여주는 activity
@@ -146,8 +150,8 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
                 holder.wordImage.setImageResource(R.drawable.ww_logo);
             }
             else {
-                Bitmap bitmap = BitmapFactory.decodeFile(words.get(position).imageLink);
-                holder.wordImage.setImageBitmap(bitmap);
+                Uri uri = Uri.parse(words.get(position).imageLink);
+                holder.wordImage.setImageURI(uri);
             }
         }
 
