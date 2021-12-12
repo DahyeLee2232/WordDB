@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class WWmainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -16,6 +17,7 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
     private Button todayBtn;
     private Button myBtn;
     private Button quizBtn;
+    ImageButton profileBtn;
 
     private FragmentManager manager;
     private TodayWordFragment todayWordFragment;
@@ -30,10 +32,12 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
         todayBtn = findViewById(R.id.today_wordlist_tab);
         myBtn = findViewById(R.id.my_wordlist_tab);
         quizBtn = findViewById(R.id.quiz_tab);
+        profileBtn = findViewById(R.id.gotoProfile);
 
         todayBtn.setOnClickListener(this);
         myBtn.setOnClickListener(this);
         quizBtn.setOnClickListener(this);
+        profileBtn.setOnClickListener(this);
 
         manager = getSupportFragmentManager();
         todayWordFragment = new TodayWordFragment();
@@ -70,6 +74,10 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
                 //tf.addToBackStack();
                 tf.commit();
             }
+        }
+        else if(v == profileBtn) {
+            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(intent);
         }
     }
 }

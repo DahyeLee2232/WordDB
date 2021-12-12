@@ -6,12 +6,15 @@
     android:orientation="vertical"
     android:padding="30dp">
 
-    <ImageView
-        android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/menu"
-        android:contentDescription="@string/Stringimg"/>
+    <ImageButton
+        android:id="@+id/gotoProfile"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/profile"
+        android:scaleType="fitCenter"
+        android:background="@drawable/profile"
+        android:contentDescription="@string/Stringimg"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
