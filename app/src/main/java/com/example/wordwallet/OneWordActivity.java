@@ -149,6 +149,7 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
             if(words.get(position).imageLink != null){
                 Uri uri = Uri.parse(words.get(position).imageLink);
                 holder.wordImage.setImageURI(uri);
+                holder.wordImage.setAlpha(1.F);
             }
         }
 
