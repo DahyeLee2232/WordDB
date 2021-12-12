@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +51,7 @@ public class AddWordActivity extends AppCompatActivity implements View.OnClickLi
         if(requestCode == 1 && resultCode == RESULT_OK){
             imageLink = data.getDataString();
             uri = data.getData();
+            Log.d("result", imageLink);
         }
     }
 
