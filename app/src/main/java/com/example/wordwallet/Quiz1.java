@@ -4,10 +4,12 @@ package com.example.wordwallet;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -23,6 +25,10 @@ import java.util.List;
 
 public class Quiz1 extends AppCompatActivity {
 
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
 
     Button q, btn1, btn2, btn3;
     TextView current;
@@ -31,6 +37,7 @@ public class Quiz1 extends AppCompatActivity {
     int correctCount = 0;
     Cursor cursor;
 
+    ImageView home;
     MediaPlayer correct, incorrect;
     ArrayList<Integer> Listnumber;
 
@@ -38,6 +45,7 @@ public class Quiz1 extends AppCompatActivity {
     ArrayList<ArrayList<String>> wordData = new ArrayList<ArrayList<String>>();
     ArrayList<String> wrongDataQ = new ArrayList<String>();
     ArrayList<String> wrongDataA = new ArrayList<String>();
+
 
 
     @Override
@@ -51,10 +59,14 @@ public class Quiz1 extends AppCompatActivity {
         btn2 = findViewById(R.id.bookmark);
         btn3 = findViewById(R.id.button3);
         current = findViewById(R.id.QuestionIndex1);
+        home = findViewById(R.id.menu);
+
 
 
         correct = MediaPlayer.create(this, R.raw.correct);
         incorrect = MediaPlayer.create(this, R.raw.incorrect);
+
+
 
         Intent intent = getIntent();
         Listnumber = intent.getIntegerArrayListExtra("ListNumber");
@@ -84,6 +96,7 @@ public class Quiz1 extends AppCompatActivity {
 
 
 
+
         cursor.close();
         db.close();
 
@@ -91,6 +104,16 @@ public class Quiz1 extends AppCompatActivity {
 
         displayQuestion1(currentIndex);
 
+        home.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Quiz1.this, WWmainActivity.class);
+                intent.putExtra("Quiz",1);
+                startActivity(intent);
+
+            }
+        });
 
         btn1.setOnClickListener(new View.OnClickListener() {
 
@@ -258,7 +281,10 @@ public class Quiz1 extends AppCompatActivity {
                 }
             }
         });
+
+
     }
+
 
 
     public void displayQuestion1(int index) { // 문제와 답 출력

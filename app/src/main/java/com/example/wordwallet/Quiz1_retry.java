@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,12 +14,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Quiz1_retry extends AppCompatActivity {
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 
     Button q, btn1, btn2, btn3;
     TextView current;
     int cIndex = 0;
     int lIndex = -1;
     int cCount = 0;
+    ImageView home;
 
     ArrayList<ArrayList<String>> wData = new ArrayList<ArrayList<String>>();
     ArrayList<String> Q = new ArrayList<String>();
@@ -42,7 +47,7 @@ public class Quiz1_retry extends AppCompatActivity {
 
         correct = MediaPlayer.create(this, R.raw.correct);
         incorrect = MediaPlayer.create(this, R.raw.incorrect);
-
+        home = findViewById(R.id.menu);
         Intent intent = getIntent();
 
         lIndex = intent.getIntExtra("wrongCount", -1);
@@ -62,7 +67,16 @@ public class Quiz1_retry extends AppCompatActivity {
         displayQuestion1(cIndex);
 
 
+        home.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Quiz1_retry.this, WWmainActivity.class);
+                intent.putExtra("Quiz",1);
+                startActivity(intent);
+
+            }
+        });
 
         btn1.setOnClickListener(new View.OnClickListener(){
 

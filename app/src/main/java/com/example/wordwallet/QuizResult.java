@@ -18,6 +18,10 @@ import java.util.HashMap;
 
 public class QuizResult extends AppCompatActivity {
 
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
     TextView correct, total;
     ListView Review;
     Button finish, retry;
