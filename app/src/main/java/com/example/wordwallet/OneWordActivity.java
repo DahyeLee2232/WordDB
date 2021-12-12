@@ -13,8 +13,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +29,7 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -67,6 +71,11 @@ public class OneWordActivity extends AppCompatActivity implements View.OnClickLi
             words.add(new ChildItem(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
         }
         db.close();
+
+        //단어장에 단어가 없으면
+        if(words.size() == 0){
+            words.add(new ChildItem(-1, "빈 단어장 입니다.", "단어를 추가해보세요!", null));
+        }
 
         pager = findViewById(R.id.view_pager);
         adapter = new MyStateAdapter(words);
