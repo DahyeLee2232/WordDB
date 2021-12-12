@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:minHeight="48dp"
         android:text="새 단어"
@@ -24,10 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:background="#00FFFFFF"
         android:minHeight="48dp"
         android:text="저장"
-        android:textAlignment="center"
-        android:background="#00FFFFFF"/>
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/word_edit"
