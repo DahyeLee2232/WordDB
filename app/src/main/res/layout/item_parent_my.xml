@@ -3,7 +3,8 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:padding="20dp"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:background="@drawable/radius">
 
     <TextView
         android:id="@+id/list_name"
@@ -16,20 +17,24 @@
 
     <ImageButton
         android:id="@+id/arrow_btn"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:button="@null"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
+
+
         android:background="@drawable/arrow"
-        android:focusable="false"/>
+        android:button="@null"
+        android:focusable="false" />
 
     <ImageButton
         android:id="@+id/plus_btn"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/arrow_btn"
-        android:layout_marginRight="5dp"
         android:background="@drawable/plus"
-        android:focusable="false"/>
+
+        android:focusable="false" />
 
 </RelativeLayout>

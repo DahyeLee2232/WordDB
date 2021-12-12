@@ -24,12 +24,12 @@ import java.util.List;
 public class Quiz1 extends AppCompatActivity {
 
 
-    Button q, btn1, btn2, btn3, exit;
+    Button q, btn1, btn2, btn3;
     TextView current;
     int currentIndex = 0;
     int lastIndex = -1;
     int correctCount = 0;
-
+    Cursor cursor;
 
     MediaPlayer correct, incorrect;
     ArrayList<Integer> Listnumber;
@@ -51,7 +51,6 @@ public class Quiz1 extends AppCompatActivity {
         btn2 = findViewById(R.id.bookmark);
         btn3 = findViewById(R.id.button3);
         current = findViewById(R.id.QuestionIndex1);
-        exit = findViewById(R.id.exit);
 
 
         correct = MediaPlayer.create(this, R.raw.correct);
@@ -62,25 +61,28 @@ public class Quiz1 extends AppCompatActivity {
 
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        //이다 수정
-        Cursor cursor = db.rawQuery("select * from word where listnumber=?", new String[]{String.valueOf(Listnumber)}); // where listnumber exists ( 범위 선택 받은 것의 list)
+
+        for(int a=0; a< Listnumber.size();a++){
+            cursor = db.rawQuery("select * from word where listnumber="+Listnumber.get(a), null); // where listnumber exists ( 범위 선택 받은 것의 list)
+
+            for (int j = 0; j < cursor.getCount(); j++) {
+                //n번째 단어의 스키마
+
+                cursor.moveToNext();
 
 
-        for (int j = 0; j < cursor.getCount(); j++) {
-            //n번째 단어의 스키마
+                ArrayList<String> word = new ArrayList<String>();
+                word.add(cursor.getString(1));
+                word.add(cursor.getString(2));
+                wordData.add(word);
 
+                lastIndex++;
 
-            cursor.moveToNext();
-
-
-            ArrayList<String> word = new ArrayList<String>();
-            word.add(cursor.getString(1));
-            word.add(cursor.getString(2));
-            wordData.add(word);
-
-            lastIndex++;
+            }
 
         }
+
+
 
         cursor.close();
         db.close();
@@ -89,13 +91,6 @@ public class Quiz1 extends AppCompatActivity {
 
         displayQuestion1(currentIndex);
 
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Quiz1.this, WWmainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         btn1.setOnClickListener(new View.OnClickListener() {
 

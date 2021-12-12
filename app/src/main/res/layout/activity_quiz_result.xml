@@ -10,10 +10,9 @@
 
     <ImageView
         android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/menu" />
-
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/user" />
 
 
     <TextView
@@ -22,11 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/menu"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/exit"
         android:gravity="center"
         android:text="결과"
         android:textColor="#000000"
-        android:textSize="20sp"  />
+        android:textSize="20sp" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -35,34 +33,39 @@
         android:src="@drawable/line3" />
 
 
+    <TextView
+        android:id="@+id/wrongQ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total"
+        android:paddingLeft="15dp"
+
+
+        android:text="틀린 문제"
+        android:textColor="#000000"
+        android:textSize="15sp"/>
+
+
+
     <LinearLayout
         android:id="@+id/feedback"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@+id/correct"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/wrongQ"
+        android:layout_marginTop="7dp"
         android:background="#F6F6F6"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="틀린 문제"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:textSize="15sp" />
+
 
         <ListView
             android:id="@+id/review"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-
-            android:text="어댑터뷰?"
+            android:text=" "
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:divider="#00FFFFFF"/>
     </LinearLayout>
 
 
@@ -71,8 +74,8 @@
         android:layout_width="170dp"
         android:layout_height="100dp"
         android:layout_below="@+id/quiz"
-        android:layout_marginTop="30dp"
-        android:gravity="right|bottom"
+        android:layout_marginTop="20dp"
+        android:gravity="right|center_vertical"
         android:textSize="50sp" />
 
     <TextView
@@ -83,7 +86,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/correct"
-        android:gravity="bottom"
+        android:gravity="center_vertical"
         android:paddingBottom="10dp"
         android:textSize="30sp" />
 
@@ -98,7 +101,7 @@
         android:background="@drawable/radius"
         android:gravity="center"
         android:text="틀린 문제 다시 풀기"
-        android:textColor="#000000" />
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/finish"

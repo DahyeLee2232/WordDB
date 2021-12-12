@@ -2,20 +2,23 @@ package com.example.wordwallet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class QuizResult extends AppCompatActivity {
 
-    TextView correct, total,exit;
+    TextView correct, total;
     ListView Review;
     Button finish, retry;
     int correctCount, totalCount, QuizNumber, wrongCount, retryCount;
@@ -33,7 +36,7 @@ public class QuizResult extends AppCompatActivity {
 
         finish = findViewById(R.id.finish);
         retry = findViewById(R.id.retry);
-        exit = findViewById(R.id.exit);
+
 
         intent = getIntent();
 
@@ -64,19 +67,16 @@ public class QuizResult extends AppCompatActivity {
                 new int[]{android.R.id.text1, android.R.id.text2});
         Review.setAdapter(adapter);
 
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(QuizResult.this, WWmainActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         finish.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuizResult.this , WWmainActivity.class);
+                intent.putExtra("Quiz",1);
                 startActivity(intent);
+
+
             }
         });
 

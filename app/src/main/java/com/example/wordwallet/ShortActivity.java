@@ -122,9 +122,9 @@ public class ShortActivity extends AppCompatActivity {
         DBHelper helper2 = new DBHelper(this);
         SQLiteDatabase database = helper2.getReadableDatabase();
 
-//        Cursor cursor = database.rawQuery("select word, meaning from word where listnumber = ?", new String[] {"%" + id + "%"} , null);
+        Cursor cursor = database.rawQuery("select word, meaning from word where listnumber = " + id , null);
 
-        Cursor cursor = database.rawQuery("select word, meaning from word where listnumber = 2", null);
+//        Cursor cursor = database.rawQuery("select word, meaning from word where listnumber = 2", null);
 
 
 
@@ -134,7 +134,6 @@ public class ShortActivity extends AppCompatActivity {
             adapter.addItemToList(cursor.getString(0), cursor.getString(1));
             Log.e("tag", "test : " + cursor.getString(0) + cursor.getString(1));
         }
-
 
 
         listView.setAdapter(adapter);
