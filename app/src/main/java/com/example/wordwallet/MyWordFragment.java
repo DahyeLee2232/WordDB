@@ -72,10 +72,14 @@ public class MyWordFragment extends Fragment {
                                 else{
                                     db = helper.getWritableDatabase();
                                     db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {name});
-                                    db.close();
-                                }
+                                    //즉시 갱신용 코드
+                                    Cursor cursor = db.rawQuery("select * from wordlist order by rowid desc limit 1", null);
+                                    cursor.moveToNext();
+                                    wordLists.add(new ParentItem(cursor.getInt(0), cursor.getString(1)));
 
-                                adapter.notifyDataSetChanged();
+                                    db.close();
+                                    adapter.notifyDataSetChanged();
+                                }
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
