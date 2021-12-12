@@ -37,9 +37,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(wordSQL);
 
         //기본 일일 단어장
-        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 1 - CNN_1"});
-        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 2 - CNN_2"});
-        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 3 - CNN_3"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 1"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 2"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 0)", new String[] {"Day 3"});
 
         //일일 단어장에 단어 추가
         db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 1)", new String[] {"government", "정부"});
@@ -61,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("insert into word (word, meaning, listnumber) values (?, ?, 3)", new String[] {"agreement", "합의"});
 
         //기본 제공 나만의 단어장 하나 추가
-        db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {"나만의 단어장 1"});
+        db.execSQL("insert into wordlist (name, day_my) values (?, 1)", new String[] {"나만의 단어장"});
 
 
 
