@@ -5,24 +5,25 @@
 
     <Button
         android:id="@+id/add_Btn"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/del_Btn"
+        android:layout_marginRight="20dp"
         android:background="@drawable/radius"
-
         android:text="단어장 추가"
-        android:textSize="13sp"
-        android:layout_toLeftOf="@+id/del_Btn"/>
+        android:textSize="13sp" />
 
     <Button
         android:id="@+id/del_Btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="단어장 삭제"
-        android:textSize="10dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
+        android:background="@drawable/radius"
+        android:text="단어장 삭제"
+        android:textSize="10dp" />
 
     <ExpandableListView
         android:id="@+id/expandable_wordlist"
