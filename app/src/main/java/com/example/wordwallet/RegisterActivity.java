@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                             } catch (FirebaseAuthWeakPasswordException e) {
                                 Toast.makeText(RegisterActivity.this, "비밀번호 6자리 이상 입력", Toast.LENGTH_SHORT).show();
                             } catch (FirebaseAuthUserCollisionException e) {
-                                Toast.makeText(RegisterActivity.this, "이미 있음 다른 아이디 ㄱㄱ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "이미 있는 아이디입니다.", Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
                                 Toast.makeText(RegisterActivity.this, "이메일 또는 비밀번호를 다시 입력하세요", Toast.LENGTH_SHORT).show();
                             }
