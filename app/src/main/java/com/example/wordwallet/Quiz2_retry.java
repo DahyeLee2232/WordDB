@@ -19,9 +19,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Quiz2_retry extends AppCompatActivity{
+
+    long first_time;
+    long second_time;
+
     public void onBackPressed() {
-        //super.onBackPressed();
+
+        second_time = System.currentTimeMillis();
+        Toast.makeText(Quiz2_retry.this, "한번 더 누르면 퀴즈가 종료됩니다", Toast.LENGTH_SHORT).show();
+        if(second_time - first_time < 2000){
+            super.onBackPressed();
+            Intent intent = new Intent(Quiz2_retry.this, WWmainActivity.class);
+            intent.putExtra("Quiz",1);
+            startActivity(intent);
+        }
+        first_time = System.currentTimeMillis();
     }
+
 
 
     Button question, nextBtn;
@@ -57,10 +71,6 @@ public class Quiz2_retry extends AppCompatActivity{
 
         home = findViewById(R.id.menu);
 
-        DBHelper helper = new DBHelper(this);
-        SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from word", null);
-
         Intent intent = getIntent();
 
         lastIndex = intent.getIntExtra("wrongCount", -1);
@@ -75,27 +85,20 @@ public class Quiz2_retry extends AppCompatActivity{
             wordData.add(word);
         }
 
-        cursor.close();
-        db.close();
 
         Collections.shuffle(wordData); // 퀴즈 문제 랜덤
 
         displayQuestion2(currentIndex);
 
-        home.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Quiz2_retry.this, WWmainActivity.class);
-                intent.putExtra("Quiz",1);
-                startActivity(intent);
-
-            }
-        });
 
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+                if(answer.getText().toString().length()==0){
+                    Toast.makeText(Quiz2_retry.this,"답을 입력해주세요",Toast.LENGTH_SHORT).show();
+                }
 
                 if(answer.getText().toString().equalsIgnoreCase(wordData.get(currentIndex).get(0))){ // 정답 -> 정답 Toast 띄우고 다음 문제 출제
 
@@ -122,9 +125,7 @@ public class Quiz2_retry extends AppCompatActivity{
 
                 }
 
-                if(answer.getText().toString().length()==0){
-                    Toast.makeText(Quiz2_retry.this,"답을 입력해주세요",Toast.LENGTH_SHORT).show();
-                }
+
 
                 else{ //오답 -> 오답 Toast 띄우고 answer 초기화 및 wrongData에 저장
                     answer.setText("");
@@ -158,11 +159,21 @@ public class Quiz2_retry extends AppCompatActivity{
     }
 
     public void displayQuestion2(int index){ //문제 띄우는 메소드
+        if (lastIndex == -1) {
+            question.setText("단어를 등록해주세요");
+            answer.setVisibility(View.GONE);
+            nextBtn.setVisibility(View.GONE);
 
-        current.setText((index+1) + "/" + (lastIndex+1));
+        }
 
-        question.setText(wordData.get(index).get(1));
-        answer.setText("");
+        else{
+            current.setText((index+1) + "/" + (lastIndex+1));
+
+            question.setText(wordData.get(index).get(1));
+            answer.setText("");
+        }
+
+
 
 
 

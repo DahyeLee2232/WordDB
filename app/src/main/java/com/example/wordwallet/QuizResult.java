@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,9 +19,22 @@ import java.util.HashMap;
 
 public class QuizResult extends AppCompatActivity {
 
+    long first_time;
+    long second_time;
+
     public void onBackPressed() {
-        //super.onBackPressed();
+
+        second_time = System.currentTimeMillis();
+        Toast.makeText(QuizResult.this, "한번 더 누르면 퀴즈가 종료됩니다", Toast.LENGTH_SHORT).show();
+        if(second_time - first_time < 2000){
+            super.onBackPressed();
+            Intent intent = new Intent(QuizResult.this, WWmainActivity.class);
+            intent.putExtra("Quiz",1);
+            startActivity(intent);
+        }
+        first_time = System.currentTimeMillis();
     }
+
 
     TextView correct, total;
     ListView Review;

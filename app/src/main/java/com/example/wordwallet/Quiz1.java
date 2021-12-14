@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -25,8 +26,20 @@ import java.util.List;
 
 public class Quiz1 extends AppCompatActivity {
 
+    long first_time;
+    long second_time;
+
     public void onBackPressed() {
-        //super.onBackPressed();
+
+        second_time = System.currentTimeMillis();
+        Toast.makeText(Quiz1.this, "한번 더 누르면 퀴즈가 종료됩니다", Toast.LENGTH_SHORT).show();
+        if(second_time - first_time < 2000){
+            super.onBackPressed();
+            Intent intent = new Intent(Quiz1.this, WWmainActivity.class);
+            intent.putExtra("Quiz",1);
+            startActivity(intent);
+        }
+        first_time = System.currentTimeMillis();
     }
 
 
@@ -46,7 +59,7 @@ public class Quiz1 extends AppCompatActivity {
     ArrayList<String> wrongDataQ = new ArrayList<String>();
     ArrayList<String> wrongDataA = new ArrayList<String>();
 
-
+    ArrayList<String> W = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,25 +108,24 @@ public class Quiz1 extends AppCompatActivity {
         }
 
 
+        cursor = db.rawQuery("select * from word where listnumber=1", null);
+        for(int h = 0; h<cursor.getCount();h++){
+            cursor.moveToNext();
+            W.add(cursor.getString(2));
+        }
+
+
+
 
 
         cursor.close();
         db.close();
 
         Collections.shuffle(wordData);
+        Collections.shuffle(W);
 
         displayQuestion1(currentIndex);
 
-        home.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Quiz1.this, WWmainActivity.class);
-                intent.putExtra("Quiz",1);
-                startActivity(intent);
-
-            }
-        });
 
         btn1.setOnClickListener(new View.OnClickListener() {
 
@@ -307,12 +319,12 @@ public class Quiz1 extends AppCompatActivity {
 
 
                     do {
-                        incorrectIndex1 = (int) ((Math.random() * lastIndex)+1);
+                        incorrectIndex1 = (int) (Math.random() * (lastIndex+1));
                     } while (index == incorrectIndex1);
 
 
                     do {
-                        incorrectIndex2 = (int) ((Math.random() * lastIndex)+1);
+                        incorrectIndex2 = (int) (Math.random() * (lastIndex+1));
                     } while (index == incorrectIndex2 || incorrectIndex1 == incorrectIndex2);
 
 
@@ -326,12 +338,12 @@ public class Quiz1 extends AppCompatActivity {
 
 
                     do {
-                        incorrectIndex1 = (int) ((Math.random() * lastIndex)+1);
+                        incorrectIndex1 = (int) (Math.random() * (lastIndex+1));
                     } while (index == incorrectIndex1);
 
 
                     do {
-                        incorrectIndex2 = (int) ((Math.random() * lastIndex)+1);
+                        incorrectIndex2 = (int) (Math.random() * (lastIndex+1));
                     } while (index == incorrectIndex2 || incorrectIndex1 == incorrectIndex2);
 
 
@@ -345,12 +357,12 @@ public class Quiz1 extends AppCompatActivity {
 
 
                     do {
-                        incorrectIndex1 = (int) ((Math.random() * lastIndex)+1);
+                        incorrectIndex1 = (int) (Math.random() * (lastIndex+1));
                     } while (index == incorrectIndex1);
 
 
                     do {
-                        incorrectIndex2 = (int) ((Math.random() * lastIndex)+1);
+                        incorrectIndex2 = (int) (Math.random() * (lastIndex+1));
                     } while (index == incorrectIndex2 || incorrectIndex1 == incorrectIndex2);
 
 
@@ -361,7 +373,7 @@ public class Quiz1 extends AppCompatActivity {
         }
 
 
-        if (lastIndex == 1) {
+        else if (lastIndex == 1) {
 
             current.setText((index + 1) + "/" + (lastIndex + 1));
 
@@ -385,19 +397,19 @@ public class Quiz1 extends AppCompatActivity {
 
                     switch (wW) {
                         case 2:
-                            btn2.setText("WordWallet");
+                            btn2.setText(W.get(index));
 
                             do {
-                                incorrectIndex = (int) ((Math.random() * lastIndex)+1);
+                                incorrectIndex = (int) (Math.random() * (lastIndex+1));
                             } while (index == incorrectIndex);
 
                             btn3.setText(wordData.get(incorrectIndex).get(1));
                             break;
                         case 3:
-                            btn3.setText("WordWallet");
+                            btn3.setText(W.get(index));
 
                             do {
-                                incorrectIndex = (int) ((Math.random() * lastIndex)+1);
+                                incorrectIndex = (int) (Math.random() * (lastIndex+1));
                             } while (index == incorrectIndex);
 
                             btn2.setText(wordData.get(incorrectIndex).get(1));
@@ -414,20 +426,20 @@ public class Quiz1 extends AppCompatActivity {
 
                     switch (wW) {
                         case 1:
-                            btn1.setText("WordWallet");
+                            btn1.setText("수용하다");
 
                             do {
-                                incorrectIndex = (int) ((Math.random() * lastIndex)+1);
+                                incorrectIndex = (int) (Math.random() * (lastIndex+1));
                             } while (index == incorrectIndex);
 
                             btn3.setText(wordData.get(incorrectIndex).get(1));
                             break;
 
                         case 3:
-                            btn3.setText("WordWallet");
+                            btn3.setText("성공");
 
                             do {
-                                incorrectIndex = (int) ((Math.random() * lastIndex)+1);
+                                incorrectIndex = (int) (Math.random() * (lastIndex+1));
                             } while (index == incorrectIndex);
 
                             btn1.setText(wordData.get(incorrectIndex).get(1));
@@ -440,19 +452,19 @@ public class Quiz1 extends AppCompatActivity {
 
                     switch (wW) {
                         case 1:
-                            btn1.setText("WordWallet");
+                            btn1.setText("처리하다");
 
                             do {
-                                incorrectIndex = (int) ((Math.random() * lastIndex)+1);
+                                incorrectIndex = (int) (Math.random() * (lastIndex+1));
                             } while (index == incorrectIndex);
 
                             btn2.setText(wordData.get(incorrectIndex).get(1));
                             break;
                         case 2:
-                            btn2.setText("WordWallet");
+                            btn2.setText("원시적인");
 
                             do {
-                                incorrectIndex = (int) ((Math.random() * lastIndex)+1);
+                                incorrectIndex = (int) (Math.random() * (lastIndex+1));
                             } while (index == incorrectIndex);
 
                             btn1.setText(wordData.get(incorrectIndex).get(1));
@@ -463,7 +475,7 @@ public class Quiz1 extends AppCompatActivity {
             }
         }
 
-        if (lastIndex == 0) {
+        else if (lastIndex == 0) {
 
             current.setText((index + 1) + "/" + (lastIndex + 1));
 
@@ -472,68 +484,32 @@ public class Quiz1 extends AppCompatActivity {
 
 
             int correct = (int) ((Math.random() * 3) + 1); // 옳은 답의 위치를 지정하는 난수
-            int wW;
 
-            do {
-                wW = (int) ((Math.random() * 3) + 1);
-            } while (correct == wW);
-
-            int incorrectIndex; // 틀린 답을 출력하기 위한 wordData의 인덱스
 
 
             switch (correct) {
                 case 1:
                     btn1.setText(wordData.get(index).get(1));
-
-                    switch (wW) {
-                        case 2:
-                            btn2.setText("Word");
-                            btn3.setText("Wallet");
-                            break;
-
-                        case 3:
-                            btn3.setText("Word");
-                            btn2.setText("Wallet");
-                            break;
-                    }
+                    btn2.setText("문제");
+                    btn3.setText("명령하다");
                     break;
 
 
                 case 2:
                     btn2.setText(wordData.get(index).get(1));
-
-
-                    switch (wW) {
-                        case 1:
-                            btn1.setText("Word");
-                            btn3.setText("Wallet");
-                            break;
-
-                        case 3:
-                            btn3.setText("Word");
-                            btn1.setText("Wallet");
-                            break;
-                    }
+                    btn1.setText("옳은");
+                    btn3.setText("찬성하다");
                     break;
 
                 case 3:
                     btn3.setText(wordData.get(index).get(1));
-
-                    switch (wW) {
-                        case 1:
-                            btn1.setText("Word");
-                            btn2.setText("Wallet");
-                            break;
-                        case 2:
-                            btn2.setText("Word");
-                            btn1.setText("Wallet");
-                            break;
-                    }
+                    btn1.setText("명성");
+                    btn2.setText("의무");
                     break;
             }
         }
 
-        if (lastIndex == -1) {
+        else if (lastIndex == -1) {
             q.setText("단어를 등록해주세요");
 
             btn1.setVisibility(View.GONE);
