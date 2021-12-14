@@ -65,7 +65,6 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
             if(!todayWordFragment.isVisible()){
                 FragmentTransaction tf = manager.beginTransaction();
                 tf.replace(R.id.main_container, todayWordFragment);
-                //tf.addToBackStack();
                 tf.commit();
             }
         }
@@ -73,7 +72,6 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
             if(!myWordFragment.isVisible()){
                 FragmentTransaction tf = manager.beginTransaction();
                 tf.replace(R.id.main_container, myWordFragment);
-                //tf.addToBackStack();
                 tf.commit();
             }
         }
@@ -81,7 +79,6 @@ public class WWmainActivity extends AppCompatActivity implements View.OnClickLis
             if(!quizFragment.isVisible()){
                 FragmentTransaction tf = manager.beginTransaction();
                 tf.replace(R.id.main_container, quizFragment);
-                //tf.addToBackStack();
                 tf.commit();
             }
         }
